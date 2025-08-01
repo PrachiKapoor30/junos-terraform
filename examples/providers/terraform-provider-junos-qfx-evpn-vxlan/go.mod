@@ -1,4 +1,4 @@
-module terraform-provider-junos-vqfx
+module terraform-provider-junos-qfx-evpn-vxlan
 
 go 1.23.8
 
