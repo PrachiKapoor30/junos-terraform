@@ -20,7 +20,6 @@ type xml_Configuration struct {
 	Groups struct {
 		XMLName xml.Name `xml:"groups"`
 		Name    *string   `xml:"name"`
-		Version []xml_Version `xml:"version,omitempty"`
 		Chassis []xml_Chassis `xml:"chassis,omitempty"`
 		Forwarding_options []xml_Forwarding_options `xml:"forwarding-options,omitempty"`
 		Interfaces []xml_Interfaces `xml:"interfaces,omitempty"`
@@ -34,10 +33,6 @@ type xml_Configuration struct {
 		Vlans []xml_Vlans `xml:"vlans,omitempty"`
 	}
 }
-type xml_Version struct {
-	XMLName xml.Name `xml:"version"`
-}
-
 type xml_Chassis struct {
 	XMLName xml.Name `xml:"chassis"`
 	Aggregated_devices []xml_Chassis_Aggregated_devices `xml:"aggregated-devices,omitempty"`
@@ -137,7 +132,7 @@ type xml_Policy_options_Policy_statement struct {
 type xml_Policy_options_Community struct {
 	XMLName xml.Name `xml:"community"`
 	Name         *string  `xml:"name,omitempty"`
-	Members         *string  `xml:"members,omitempty"`
+	Members         []*string  `xml:"members,omitempty"`
 }
 type xml_Protocols_Bgp struct {
 	XMLName xml.Name `xml:"bgp"`
@@ -148,7 +143,7 @@ type xml_Protocols_Evpn struct {
 	Encapsulation         *string  `xml:"encapsulation,omitempty"`
 	Multicast_mode         *string  `xml:"multicast-mode,omitempty"`
 	Default_gateway         *string  `xml:"default-gateway,omitempty"`
-	Extended_vni_list         *string  `xml:"extended-vni-list,omitempty"`
+	Extended_vni_list         []*string  `xml:"extended-vni-list,omitempty"`
 	No_core_isolation         *string  `xml:"no-core-isolation,omitempty"`
 }
 type xml_Protocols_Lldp struct {
@@ -176,7 +171,7 @@ type xml_Routing_options_Static struct {
 }
 type xml_Routing_options_Forwarding_table struct {
 	XMLName xml.Name `xml:"forwarding-table"`
-	Export         *string  `xml:"export,omitempty"`
+	Export         []*string  `xml:"export,omitempty"`
 	Ecmp_fast_reroute         *string  `xml:"ecmp-fast-reroute,omitempty"`
 	Chained_composite_next_hop []xml_Routing_options_Forwarding_table_Chained_composite_next_hop `xml:"chained-composite-next-hop,omitempty"`
 }
@@ -276,15 +271,15 @@ type xml_Protocols_Bgp_Group struct {
 	Multihop []xml_Protocols_Bgp_Group_Multihop `xml:"multihop,omitempty"`
 	Local_address         *string  `xml:"local-address,omitempty"`
 	Mtu_discovery         *string  `xml:"mtu-discovery,omitempty"`
-	Import         *string  `xml:"import,omitempty"`
+	Import         []*string  `xml:"import,omitempty"`
 	Family []xml_Protocols_Bgp_Group_Family `xml:"family,omitempty"`
-	Export         *string  `xml:"export,omitempty"`
+	Export         []*string  `xml:"export,omitempty"`
 	Vpn_apply_export         *string  `xml:"vpn-apply-export,omitempty"`
 	Cluster         *string  `xml:"cluster,omitempty"`
 	Local_as []xml_Protocols_Bgp_Group_Local_as `xml:"local-as,omitempty"`
 	Multipath []xml_Protocols_Bgp_Group_Multipath `xml:"multipath,omitempty"`
 	Bfd_liveness_detection []xml_Protocols_Bgp_Group_Bfd_liveness_detection `xml:"bfd-liveness-detection,omitempty"`
-	Allow         *string  `xml:"allow,omitempty"`
+	Allow         []*string  `xml:"allow,omitempty"`
 	Neighbor []xml_Protocols_Bgp_Group_Neighbor `xml:"neighbor,omitempty"`
 }
 type xml_Protocols_Lldp_Interface struct {
@@ -322,7 +317,7 @@ type xml_Routing_instances_Instance_Protocols struct {
 type xml_Routing_options_Static_Route struct {
 	XMLName xml.Name `xml:"route"`
 	Name         *string  `xml:"name,omitempty"`
-	Next_hop         *string  `xml:"next-hop,omitempty"`
+	Next_hop         []*string  `xml:"next-hop,omitempty"`
 }
 type xml_Routing_options_Forwarding_table_Chained_composite_next_hop struct {
 	XMLName xml.Name `xml:"chained-composite-next-hop"`
@@ -393,7 +388,7 @@ type xml_Interfaces_Interface_Unit_Family struct {
 }
 type xml_Policy_options_Policy_statement_Term_From struct {
 	XMLName xml.Name `xml:"from"`
-	Protocol         *string  `xml:"protocol,omitempty"`
+	Protocol         []*string  `xml:"protocol,omitempty"`
 	Route_filter []xml_Policy_options_Policy_statement_Term_From_Route_filter `xml:"route-filter,omitempty"`
 }
 type xml_Policy_options_Policy_statement_Term_Then struct {
@@ -438,7 +433,7 @@ type xml_Routing_instances_Instance_Routing_options_Auto_export struct {
 }
 type xml_Routing_instances_Instance_Protocols_Ospf struct {
 	XMLName xml.Name `xml:"ospf"`
-	Export         *string  `xml:"export,omitempty"`
+	Export         []*string  `xml:"export,omitempty"`
 	Area []xml_Routing_instances_Instance_Protocols_Ospf_Area `xml:"area,omitempty"`
 }
 type xml_Routing_instances_Instance_Protocols_Evpn struct {
@@ -483,7 +478,7 @@ type xml_System_Syslog_File_Contents struct {
 type xml_System_Extensions_Providers_License_type struct {
 	XMLName xml.Name `xml:"license-type"`
 	Name         *string  `xml:"name,omitempty"`
-	Deployment_scope         *string  `xml:"deployment-scope,omitempty"`
+	Deployment_scope         []*string  `xml:"deployment-scope,omitempty"`
 }
 
 type xml_Interfaces_Interface_Unit_Family_Inet struct {
@@ -520,7 +515,7 @@ type xml_Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes struct {
 	Advertise         *string  `xml:"advertise,omitempty"`
 	Encapsulation         *string  `xml:"encapsulation,omitempty"`
 	Vni         *string  `xml:"vni,omitempty"`
-	Export         *string  `xml:"export,omitempty"`
+	Export         []*string  `xml:"export,omitempty"`
 }
 type xml_System_Services_Extension_service_Request_response_Grpc struct {
 	XMLName xml.Name `xml:"grpc"`
@@ -528,7 +523,7 @@ type xml_System_Services_Extension_service_Request_response_Grpc struct {
 }
 type xml_System_Services_Extension_service_Notification_Allow_clients struct {
 	XMLName xml.Name `xml:"allow-clients"`
-	Address         *string  `xml:"address,omitempty"`
+	Address         []*string  `xml:"address,omitempty"`
 }
 
 type xml_Interfaces_Interface_Unit_Family_Inet_Address struct {
@@ -537,7 +532,7 @@ type xml_Interfaces_Interface_Unit_Family_Inet_Address struct {
 }
 type xml_Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan struct {
 	XMLName xml.Name `xml:"vlan"`
-	Members         *string  `xml:"members,omitempty"`
+	Members         []*string  `xml:"members,omitempty"`
 }
 type xml_Protocols_Bgp_Group_Family_Evpn_Signaling struct {
 	XMLName xml.Name `xml:"signaling"`
@@ -565,7 +560,6 @@ type xml_Protocols_Bgp_Group_Family_Evpn_Signaling_Delay_route_advertisements_Mi
 // Collecting objects from the .tf file
 type Groups_Model struct {
 	ResourceName	types.String `tfsdk:"resource_name"`
-	Version types.List `tfsdk:"version"`
 	Chassis types.List `tfsdk:"chassis"`
 	Forwarding_options types.List `tfsdk:"forwarding_options"`
 	Interfaces types.List `tfsdk:"interfaces"`
@@ -580,7 +574,6 @@ type Groups_Model struct {
 }
 func (o Groups_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type {
-		"version": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Version_Model{}.AttrTypes()}},
 		"chassis": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Chassis_Model{}.AttrTypes()}},
 		"forwarding_options": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Forwarding_options_Model{}.AttrTypes()}},
 		"interfaces": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Interfaces_Model{}.AttrTypes()}},
@@ -599,12 +592,6 @@ func (o Groups_Model) Attributes() map[string]schema.Attribute {
 		"resource_name": schema.StringAttribute {
 			Required: true,
 			MarkdownDescription: "xpath is `config.Groups.resource_name`",
-		},
-		"version": schema.ListNestedAttribute{
-			Optional: true,
-			NestedObject: schema.NestedAttributeObject{
-				Attributes: Version_Model{}.Attributes(),
-			},
 		},
 		"chassis": schema.ListNestedAttribute{
 			Optional: true,
@@ -672,16 +659,6 @@ func (o Groups_Model) Attributes() map[string]schema.Attribute {
 				Attributes: Vlans_Model{}.Attributes(),
 			},
 		},
-	}
-}
-type Version_Model struct {
-}
-func (o Version_Model) AttrTypes() map[string]attr.Type {
-	return map[string]attr.Type{
-	}
-}
-func (o Version_Model) Attributes() map[string]schema.Attribute {
-	return map[string]schema.Attribute{
 	}
 }
 type Chassis_Model struct {
@@ -846,7 +823,7 @@ func (o Routing_options_Model) Attributes() map[string]schema.Attribute {
 		},
 		"router_id": schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: "xpth is `config.Groups.Routing-options.Router-id",
+			MarkdownDescription: "xpath is `config.Groups.Routing-options.Router-id`",
 		},
 		"forwarding_table": schema.ListNestedAttribute{
 			Optional: true,
@@ -872,11 +849,11 @@ func (o Snmp_Model) Attributes() map[string]schema.Attribute {
 	return map[string]schema.Attribute{
 		"location": schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: "xpth is `config.Groups.Snmp.Location",
+			MarkdownDescription: "xpath is `config.Groups.Snmp.Location`",
 		},
 		"contact": schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: "xpth is `config.Groups.Snmp.Contact",
+			MarkdownDescription: "xpath is `config.Groups.Snmp.Contact`",
 		},
 		"community": schema.ListNestedAttribute{
 			Optional: true,
@@ -954,7 +931,7 @@ func (o System_Model) Attributes() map[string]schema.Attribute {
 		},
 		"host_name": schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: "xpth is `config.Groups.System.Host-name",
+			MarkdownDescription: "xpath is `config.Groups.System.Host-name`",
 		},
 		"services": schema.ListNestedAttribute{
 			Optional: true,
@@ -1131,12 +1108,12 @@ func (o Policy_options_Policy_statement_Model) Attributes() map[string]schema.At
 }
 type Policy_options_Community_Model struct {
 	Name	types.String `tfsdk:"name"`
-	Members	types.String `tfsdk:"members"`
+	Members	types.List `tfsdk:"members"`
 }
 func (o Policy_options_Community_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
 	    "name": 	types.StringType,
-	    "members": 	types.StringType,
+		"members": 	types.ListType{ElemType: types.StringType},
 	}
 }
 func (o Policy_options_Community_Model) Attributes() map[string]schema.Attribute {
@@ -1145,10 +1122,11 @@ func (o Policy_options_Community_Model) Attributes() map[string]schema.Attribute
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Name.Community`",
 	    },
-	    "members": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Members.Community`",
-	    },
+		"members": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Members.Community`",
+		},
     }
 }
 type Protocols_Bgp_Model struct {
@@ -1173,7 +1151,7 @@ type Protocols_Evpn_Model struct {
 	Encapsulation	types.String `tfsdk:"encapsulation"`
 	Multicast_mode	types.String `tfsdk:"multicast_mode"`
 	Default_gateway	types.String `tfsdk:"default_gateway"`
-	Extended_vni_list	types.String `tfsdk:"extended_vni_list"`
+	Extended_vni_list	types.List `tfsdk:"extended_vni_list"`
 	No_core_isolation	types.String `tfsdk:"no_core_isolation"`
 }
 func (o Protocols_Evpn_Model) AttrTypes() map[string]attr.Type {
@@ -1181,7 +1159,7 @@ func (o Protocols_Evpn_Model) AttrTypes() map[string]attr.Type {
 	    "encapsulation": 	types.StringType,
 	    "multicast_mode": 	types.StringType,
 	    "default_gateway": 	types.StringType,
-	    "extended_vni_list": 	types.StringType,
+		"extended_vni_list": 	types.ListType{ElemType: types.StringType},
 	    "no_core_isolation": 	types.StringType,
 	}
 }
@@ -1199,10 +1177,11 @@ func (o Protocols_Evpn_Model) Attributes() map[string]schema.Attribute {
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Default-gateway.Evpn`",
 	    },
-	    "extended_vni_list": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Extended-vni-list.Evpn`",
-	    },
+		"extended_vni_list": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Extended-vni-list.Evpn`",
+		},
 	    "no_core_isolation": schema.StringAttribute{
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.No-core-isolation.Evpn`",
@@ -1334,23 +1313,24 @@ func (o Routing_options_Static_Model) Attributes() map[string]schema.Attribute {
     }
 }
 type Routing_options_Forwarding_table_Model struct {
-	Export	types.String `tfsdk:"export"`
+	Export	types.List `tfsdk:"export"`
 	Ecmp_fast_reroute	types.String `tfsdk:"ecmp_fast_reroute"`
 	Chained_composite_next_hop	types.List `tfsdk:"chained_composite_next_hop"`
 }
 func (o Routing_options_Forwarding_table_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-	    "export": 	types.StringType,
+		"export": 	types.ListType{ElemType: types.StringType},
 	    "ecmp_fast_reroute": 	types.StringType,
 	    "chained_composite_next_hop": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Routing_options_Forwarding_table_Chained_composite_next_hop_Model{}.AttrTypes()}},
 	}
 }
 func (o Routing_options_Forwarding_table_Model) Attributes() map[string]schema.Attribute {
 	return map[string]schema.Attribute{
-	    "export": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Export.Forwarding_table`",
-	    },
+		"export": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Export.Forwarding_table`",
+		},
 	    "ecmp_fast_reroute": schema.StringAttribute{
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Ecmp-fast-reroute.Forwarding_table`",
@@ -1786,15 +1766,15 @@ type Protocols_Bgp_Group_Model struct {
 	Multihop	types.List `tfsdk:"multihop"`
 	Local_address	types.String `tfsdk:"local_address"`
 	Mtu_discovery	types.String `tfsdk:"mtu_discovery"`
-	Import	types.String `tfsdk:"import"`
+	Import	types.List `tfsdk:"import"`
 	Family	types.List `tfsdk:"family"`
-	Export	types.String `tfsdk:"export"`
+	Export	types.List `tfsdk:"export"`
 	Vpn_apply_export	types.String `tfsdk:"vpn_apply_export"`
 	Cluster	types.String `tfsdk:"cluster"`
 	Local_as	types.List `tfsdk:"local_as"`
 	Multipath	types.List `tfsdk:"multipath"`
 	Bfd_liveness_detection	types.List `tfsdk:"bfd_liveness_detection"`
-	Allow	types.String `tfsdk:"allow"`
+	Allow	types.List `tfsdk:"allow"`
 	Neighbor	types.List `tfsdk:"neighbor"`
 }
 func (o Protocols_Bgp_Group_Model) AttrTypes() map[string]attr.Type {
@@ -1804,15 +1784,15 @@ func (o Protocols_Bgp_Group_Model) AttrTypes() map[string]attr.Type {
 	    "multihop": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Multihop_Model{}.AttrTypes()}},
 	    "local_address": 	types.StringType,
 	    "mtu_discovery": 	types.StringType,
-	    "import": 	types.StringType,
+		"import": 	types.ListType{ElemType: types.StringType},
 	    "family": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Family_Model{}.AttrTypes()}},
-	    "export": 	types.StringType,
+		"export": 	types.ListType{ElemType: types.StringType},
 	    "vpn_apply_export": 	types.StringType,
 	    "cluster": 	types.StringType,
 	    "local_as": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Local_as_Model{}.AttrTypes()}},
 	    "multipath": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Multipath_Model{}.AttrTypes()}},
 	    "bfd_liveness_detection": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Bfd_liveness_detection_Model{}.AttrTypes()}},
-	    "allow": 	types.StringType,
+		"allow": 	types.ListType{ElemType: types.StringType},
 	    "neighbor": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Neighbor_Model{}.AttrTypes()}},
 	}
 }
@@ -1840,20 +1820,22 @@ func (o Protocols_Bgp_Group_Model) Attributes() map[string]schema.Attribute {
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Mtu-discovery.Group`",
 	    },
-	    "import": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Import.Group`",
-	    },
+		"import": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Import.Group`",
+		},
 	    "family": schema.ListNestedAttribute{
 		    Optional: true,
 		    NestedObject: schema.NestedAttributeObject{
 			    Attributes: Protocols_Bgp_Group_Family_Model{}.Attributes(),
 	        },
         },
-	    "export": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Export.Group`",
-	    },
+		"export": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Export.Group`",
+		},
 	    "vpn_apply_export": schema.StringAttribute{
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Vpn-apply-export.Group`",
@@ -1880,10 +1862,11 @@ func (o Protocols_Bgp_Group_Model) Attributes() map[string]schema.Attribute {
 			    Attributes: Protocols_Bgp_Group_Bfd_liveness_detection_Model{}.Attributes(),
 	        },
         },
-	    "allow": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Allow.Group`",
-	    },
+		"allow": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Allow.Group`",
+		},
 	    "neighbor": schema.ListNestedAttribute{
 		    Optional: true,
 		    NestedObject: schema.NestedAttributeObject{
@@ -2028,12 +2011,12 @@ func (o Routing_instances_Instance_Protocols_Model) Attributes() map[string]sche
 }
 type Routing_options_Static_Route_Model struct {
 	Name	types.String `tfsdk:"name"`
-	Next_hop	types.String `tfsdk:"next_hop"`
+	Next_hop	types.List `tfsdk:"next_hop"`
 }
 func (o Routing_options_Static_Route_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
 	    "name": 	types.StringType,
-	    "next_hop": 	types.StringType,
+		"next_hop": 	types.ListType{ElemType: types.StringType},
 	}
 }
 func (o Routing_options_Static_Route_Model) Attributes() map[string]schema.Attribute {
@@ -2042,10 +2025,11 @@ func (o Routing_options_Static_Route_Model) Attributes() map[string]schema.Attri
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Name.Route`",
 	    },
-	    "next_hop": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Next-hop.Route`",
-	    },
+		"next_hop": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Next-hop.Route`",
+		},
     }
 }
 type Routing_options_Forwarding_table_Chained_composite_next_hop_Model struct {
@@ -2356,21 +2340,22 @@ func (o Interfaces_Interface_Unit_Family_Model) Attributes() map[string]schema.A
     }
 }
 type Policy_options_Policy_statement_Term_From_Model struct {
-	Protocol	types.String `tfsdk:"protocol"`
+	Protocol	types.List `tfsdk:"protocol"`
 	Route_filter	types.List `tfsdk:"route_filter"`
 }
 func (o Policy_options_Policy_statement_Term_From_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-	    "protocol": 	types.StringType,
+		"protocol": 	types.ListType{ElemType: types.StringType},
 	    "route_filter": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Policy_options_Policy_statement_Term_From_Route_filter_Model{}.AttrTypes()}},
 	}
 }
 func (o Policy_options_Policy_statement_Term_From_Model) Attributes() map[string]schema.Attribute {
 	return map[string]schema.Attribute{
-	    "protocol": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Protocol.From`",
-	    },
+		"protocol": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Protocol.From`",
+		},
 	    "route_filter": schema.ListNestedAttribute{
 		    Optional: true,
 		    NestedObject: schema.NestedAttributeObject{
@@ -2552,21 +2537,22 @@ func (o Routing_instances_Instance_Routing_options_Auto_export_Model) Attributes
     }
 }
 type Routing_instances_Instance_Protocols_Ospf_Model struct {
-	Export	types.String `tfsdk:"export"`
+	Export	types.List `tfsdk:"export"`
 	Area	types.List `tfsdk:"area"`
 }
 func (o Routing_instances_Instance_Protocols_Ospf_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-	    "export": 	types.StringType,
+		"export": 	types.ListType{ElemType: types.StringType},
 	    "area": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Routing_instances_Instance_Protocols_Ospf_Area_Model{}.AttrTypes()}},
 	}
 }
 func (o Routing_instances_Instance_Protocols_Ospf_Model) Attributes() map[string]schema.Attribute {
 	return map[string]schema.Attribute{
-	    "export": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Export.Ospf`",
-	    },
+		"export": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Export.Ospf`",
+		},
 	    "area": schema.ListNestedAttribute{
 		    Optional: true,
 		    NestedObject: schema.NestedAttributeObject{
@@ -2745,12 +2731,12 @@ func (o System_Syslog_File_Contents_Model) Attributes() map[string]schema.Attrib
 }
 type System_Extensions_Providers_License_type_Model struct {
 	Name	types.String `tfsdk:"name"`
-	Deployment_scope	types.String `tfsdk:"deployment_scope"`
+	Deployment_scope	types.List `tfsdk:"deployment_scope"`
 }
 func (o System_Extensions_Providers_License_type_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
 	    "name": 	types.StringType,
-	    "deployment_scope": 	types.StringType,
+		"deployment_scope": 	types.ListType{ElemType: types.StringType},
 	}
 }
 func (o System_Extensions_Providers_License_type_Model) Attributes() map[string]schema.Attribute {
@@ -2759,10 +2745,11 @@ func (o System_Extensions_Providers_License_type_Model) Attributes() map[string]
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Name.License_type`",
 	    },
-	    "deployment_scope": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Deployment-scope.License_type`",
-	    },
+		"deployment_scope": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Deployment-scope.License_type`",
+		},
     }
 }
 
@@ -2904,14 +2891,14 @@ type Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model struct {
 	Advertise	types.String `tfsdk:"advertise"`
 	Encapsulation	types.String `tfsdk:"encapsulation"`
 	Vni	types.String `tfsdk:"vni"`
-	Export	types.String `tfsdk:"export"`
+	Export	types.List `tfsdk:"export"`
 }
 func (o Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
 	    "advertise": 	types.StringType,
 	    "encapsulation": 	types.StringType,
 	    "vni": 	types.StringType,
-	    "export": 	types.StringType,
+		"export": 	types.ListType{ElemType: types.StringType},
 	}
 }
 func (o Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model) Attributes() map[string]schema.Attribute {
@@ -2928,10 +2915,11 @@ func (o Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model) Attrib
 		    Optional: true,
 		    MarkdownDescription: "xpath is `config.Groups.Vni.Ip_prefix_routes`",
 	    },
-	    "export": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Export.Ip_prefix_routes`",
-	    },
+		"export": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Export.Ip_prefix_routes`",
+		},
     }
 }
 type System_Services_Extension_service_Request_response_Grpc_Model struct {
@@ -2951,19 +2939,20 @@ func (o System_Services_Extension_service_Request_response_Grpc_Model) Attribute
     }
 }
 type System_Services_Extension_service_Notification_Allow_clients_Model struct {
-	Address	types.String `tfsdk:"address"`
+	Address	types.List `tfsdk:"address"`
 }
 func (o System_Services_Extension_service_Notification_Allow_clients_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-	    "address": 	types.StringType,
+		"address": 	types.ListType{ElemType: types.StringType},
 	}
 }
 func (o System_Services_Extension_service_Notification_Allow_clients_Model) Attributes() map[string]schema.Attribute {
 	return map[string]schema.Attribute{
-	    "address": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Address.Allow_clients`",
-	    },
+		"address": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Address.Allow_clients`",
+		},
     }
 }
 
@@ -2984,19 +2973,20 @@ func (o Interfaces_Interface_Unit_Family_Inet_Address_Model) Attributes() map[st
     }
 }
 type Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan_Model struct {
-	Members	types.String `tfsdk:"members"`
+	Members	types.List `tfsdk:"members"`
 }
 func (o Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan_Model) AttrTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-	    "members": 	types.StringType,
+		"members": 	types.ListType{ElemType: types.StringType},
 	}
 }
 func (o Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan_Model) Attributes() map[string]schema.Attribute {
 	return map[string]schema.Attribute{
-	    "members": schema.StringAttribute{
-		    Optional: true,
-		    MarkdownDescription: "xpath is `config.Groups.Members.Vlan`",
-	    },
+		"members": schema.ListAttribute{
+			ElementType:         types.StringType,
+			Optional:            true,
+			MarkdownDescription: "xpath is `config.Groups.Members.Vlan`",
+		},
     }
 }
 type Protocols_Bgp_Group_Family_Evpn_Signaling_Model struct {
@@ -3101,12 +3091,6 @@ func (r *resource_Apply_Groups) Schema(_ context.Context, req resource.SchemaReq
 				Required:      true,
 				PlanModifiers: []planmodifier.String{stringplanmodifier.RequiresReplace()},
 			},
-			"version": schema.ListNestedAttribute{
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: Version_Model{}.Attributes(),
-				},
-			},
 			"chassis": schema.ListNestedAttribute{
 				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
@@ -3193,20 +3177,6 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
 	config.Groups.Name = plan.ResourceName.ValueStringPointer()
     
 	
-    var var_version []Version_Model
-    if plan.Version.IsNull() {
-        var_version = []Version_Model{}
-    }else {
-        resp.Diagnostics.Append(plan.Version.ElementsAs(ctx, &var_version, false)...)
-        if resp.Diagnostics.HasError() {
-            return
-        }
-    }
-    config.Groups.Version = make([]xml_Version, len(var_version))
-   
-    for i_version, v_version := range var_version {
-    }
-	
     var var_chassis []Chassis_Model
     if plan.Chassis.IsNull() {
         var_chassis = []Chassis_Model{}
@@ -3399,7 +3369,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
 	    config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan = make([]xml_Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan, len(var_interfaces_interface_unit_family_ethernet_switching_vlan))
         
 		for i_interfaces_interface_unit_family_ethernet_switching_vlan, v_interfaces_interface_unit_family_ethernet_switching_vlan := range var_interfaces_interface_unit_family_ethernet_switching_vlan {
-            config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan[i_interfaces_interface_unit_family_ethernet_switching_vlan].Members = v_interfaces_interface_unit_family_ethernet_switching_vlan.Members.ValueStringPointer()
+			var var_interfaces_interface_unit_family_ethernet_switching_vlan_members []string
+			resp.Diagnostics.Append(v_interfaces_interface_unit_family_ethernet_switching_vlan.Members.ElementsAs(ctx, &var_interfaces_interface_unit_family_ethernet_switching_vlan_members, false)...)
+			for _, v_interfaces_interface_unit_family_ethernet_switching_vlan_members := range var_interfaces_interface_unit_family_ethernet_switching_vlan_members {
+				config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan[i_interfaces_interface_unit_family_ethernet_switching_vlan].Members = append(config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan[i_interfaces_interface_unit_family_ethernet_switching_vlan].Members, &v_interfaces_interface_unit_family_ethernet_switching_vlan_members)
+			}
         }
         }
         }
@@ -3446,7 +3420,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
 	    config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From = make([]xml_Policy_options_Policy_statement_Term_From, len(var_policy_options_policy_statement_term_from))
         
 		for i_policy_options_policy_statement_term_from, v_policy_options_policy_statement_term_from := range var_policy_options_policy_statement_term_from {
-            config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From[i_policy_options_policy_statement_term_from].Protocol = v_policy_options_policy_statement_term_from.Protocol.ValueStringPointer()
+			var var_policy_options_policy_statement_term_from_protocol []string
+			resp.Diagnostics.Append(v_policy_options_policy_statement_term_from.Protocol.ElementsAs(ctx, &var_policy_options_policy_statement_term_from_protocol, false)...)
+			for _, v_policy_options_policy_statement_term_from_protocol := range var_policy_options_policy_statement_term_from_protocol {
+				config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From[i_policy_options_policy_statement_term_from].Protocol = append(config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From[i_policy_options_policy_statement_term_from].Protocol, &v_policy_options_policy_statement_term_from_protocol)
+			}
             var var_policy_options_policy_statement_term_from_route_filter []Policy_options_Policy_statement_Term_From_Route_filter_Model
             resp.Diagnostics.Append(v_policy_options_policy_statement_term_from.Route_filter.ElementsAs(ctx, &var_policy_options_policy_statement_term_from_route_filter, false)...)
             if resp.Diagnostics.HasError() {
@@ -3513,7 +3491,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
         
 		for i_policy_options_community, v_policy_options_community := range var_policy_options_community {
             config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Name = v_policy_options_community.Name.ValueStringPointer()
-            config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Members = v_policy_options_community.Members.ValueStringPointer()
+			var var_policy_options_community_members []string
+			resp.Diagnostics.Append(v_policy_options_community.Members.ElementsAs(ctx, &var_policy_options_community_members, false)...)
+			for _, v_policy_options_community_members := range var_policy_options_community_members {
+				config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Members = append(config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Members, &v_policy_options_community_members)
+			}
         }
     }
 	
@@ -3559,7 +3541,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
         }
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Local_address = v_protocols_bgp_group.Local_address.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Mtu_discovery = v_protocols_bgp_group.Mtu_discovery.ValueStringPointer()
-            config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Import = v_protocols_bgp_group.Import.ValueStringPointer()
+			var var_protocols_bgp_group_import []string
+			resp.Diagnostics.Append(v_protocols_bgp_group.Import.ElementsAs(ctx, &var_protocols_bgp_group_import, false)...)
+			for _, v_protocols_bgp_group_import := range var_protocols_bgp_group_import {
+				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Import = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Import, &v_protocols_bgp_group_import)
+			}
             var var_protocols_bgp_group_family []Protocols_Bgp_Group_Family_Model
             resp.Diagnostics.Append(v_protocols_bgp_group.Family.ElementsAs(ctx, &var_protocols_bgp_group_family, false)...)
             if resp.Diagnostics.HasError() {
@@ -3606,7 +3592,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
         }
         }
         }
-            config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Export = v_protocols_bgp_group.Export.ValueStringPointer()
+			var var_protocols_bgp_group_export []string
+			resp.Diagnostics.Append(v_protocols_bgp_group.Export.ElementsAs(ctx, &var_protocols_bgp_group_export, false)...)
+			for _, v_protocols_bgp_group_export := range var_protocols_bgp_group_export {
+				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Export = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Export, &v_protocols_bgp_group_export)
+			}
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Vpn_apply_export = v_protocols_bgp_group.Vpn_apply_export.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Cluster = v_protocols_bgp_group.Cluster.ValueStringPointer()
             var var_protocols_bgp_group_local_as []Protocols_Bgp_Group_Local_as_Model
@@ -3640,7 +3630,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Minimum_interval = v_protocols_bgp_group_bfd_liveness_detection.Minimum_interval.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Multiplier = v_protocols_bgp_group_bfd_liveness_detection.Multiplier.ValueStringPointer()
         }
-            config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow = v_protocols_bgp_group.Allow.ValueStringPointer()
+			var var_protocols_bgp_group_allow []string
+			resp.Diagnostics.Append(v_protocols_bgp_group.Allow.ElementsAs(ctx, &var_protocols_bgp_group_allow, false)...)
+			for _, v_protocols_bgp_group_allow := range var_protocols_bgp_group_allow {
+				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow, &v_protocols_bgp_group_allow)
+			}
             var var_protocols_bgp_group_neighbor []Protocols_Bgp_Group_Neighbor_Model
             resp.Diagnostics.Append(v_protocols_bgp_group.Neighbor.ElementsAs(ctx, &var_protocols_bgp_group_neighbor, false)...)
             if resp.Diagnostics.HasError() {
@@ -3666,7 +3660,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Encapsulation = v_protocols_evpn.Encapsulation.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Multicast_mode = v_protocols_evpn.Multicast_mode.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Default_gateway = v_protocols_evpn.Default_gateway.ValueStringPointer()
-            config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Extended_vni_list = v_protocols_evpn.Extended_vni_list.ValueStringPointer()
+			var var_protocols_evpn_extended_vni_list []string
+			resp.Diagnostics.Append(v_protocols_evpn.Extended_vni_list.ElementsAs(ctx, &var_protocols_evpn_extended_vni_list, false)...)
+			for _, v_protocols_evpn_extended_vni_list := range var_protocols_evpn_extended_vni_list {
+				config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Extended_vni_list = append(config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Extended_vni_list, &v_protocols_evpn_extended_vni_list)
+			}
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].No_core_isolation = v_protocols_evpn.No_core_isolation.ValueStringPointer()
         }
         var var_protocols_lldp []Protocols_Lldp_Model
@@ -3800,7 +3798,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
 	    config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf = make([]xml_Routing_instances_Instance_Protocols_Ospf, len(var_routing_instances_instance_protocols_ospf))
         
 		for i_routing_instances_instance_protocols_ospf, v_routing_instances_instance_protocols_ospf := range var_routing_instances_instance_protocols_ospf {
-            config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf[i_routing_instances_instance_protocols_ospf].Export = v_routing_instances_instance_protocols_ospf.Export.ValueStringPointer()
+			var var_routing_instances_instance_protocols_ospf_export []string
+			resp.Diagnostics.Append(v_routing_instances_instance_protocols_ospf.Export.ElementsAs(ctx, &var_routing_instances_instance_protocols_ospf_export, false)...)
+			for _, v_routing_instances_instance_protocols_ospf_export := range var_routing_instances_instance_protocols_ospf_export {
+				config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf[i_routing_instances_instance_protocols_ospf].Export = append(config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf[i_routing_instances_instance_protocols_ospf].Export, &v_routing_instances_instance_protocols_ospf_export)
+			}
             var var_routing_instances_instance_protocols_ospf_area []Routing_instances_Instance_Protocols_Ospf_Area_Model
             resp.Diagnostics.Append(v_routing_instances_instance_protocols_ospf.Area.ElementsAs(ctx, &var_routing_instances_instance_protocols_ospf_area, false)...)
             if resp.Diagnostics.HasError() {
@@ -3842,7 +3844,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
             config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Advertise = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Advertise.ValueStringPointer()
             config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Encapsulation = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Encapsulation.ValueStringPointer()
             config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Vni = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Vni.ValueStringPointer()
-            config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Export = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export.ValueStringPointer()
+			var var_routing_instances_instance_protocols_evpn_ip_prefix_routes_export []string
+			resp.Diagnostics.Append(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export.ElementsAs(ctx, &var_routing_instances_instance_protocols_evpn_ip_prefix_routes_export, false)...)
+			for _, v_routing_instances_instance_protocols_evpn_ip_prefix_routes_export := range var_routing_instances_instance_protocols_evpn_ip_prefix_routes_export {
+				config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Export = append(config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Export, &v_routing_instances_instance_protocols_evpn_ip_prefix_routes_export)
+			}
         }
         }
         }
@@ -3878,7 +3884,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
         
 		for i_routing_options_static_route, v_routing_options_static_route := range var_routing_options_static_route {
             config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Name = v_routing_options_static_route.Name.ValueStringPointer()
-            config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Next_hop = v_routing_options_static_route.Next_hop.ValueStringPointer()
+			var var_routing_options_static_route_next_hop []string
+			resp.Diagnostics.Append(v_routing_options_static_route.Next_hop.ElementsAs(ctx, &var_routing_options_static_route_next_hop, false)...)
+			for _, v_routing_options_static_route_next_hop := range var_routing_options_static_route_next_hop {
+				config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Next_hop = append(config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Next_hop, &v_routing_options_static_route_next_hop)
+			}
         }
         }
         config.Groups.Routing_options[i_routing_options].Router_id = v_routing_options.Router_id.ValueStringPointer()
@@ -3890,7 +3900,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
 	    config.Groups.Routing_options[i_routing_options].Forwarding_table = make([]xml_Routing_options_Forwarding_table, len(var_routing_options_forwarding_table))
         
 		for i_routing_options_forwarding_table, v_routing_options_forwarding_table := range var_routing_options_forwarding_table {
-            config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Export = v_routing_options_forwarding_table.Export.ValueStringPointer()
+			var var_routing_options_forwarding_table_export []string
+			resp.Diagnostics.Append(v_routing_options_forwarding_table.Export.ElementsAs(ctx, &var_routing_options_forwarding_table_export, false)...)
+			for _, v_routing_options_forwarding_table_export := range var_routing_options_forwarding_table_export {
+				config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Export = append(config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Export, &v_routing_options_forwarding_table_export)
+			}
             config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Ecmp_fast_reroute = v_routing_options_forwarding_table.Ecmp_fast_reroute.ValueStringPointer()
             var var_routing_options_forwarding_table_chained_composite_next_hop []Routing_options_Forwarding_table_Chained_composite_next_hop_Model
             resp.Diagnostics.Append(v_routing_options_forwarding_table.Chained_composite_next_hop.ElementsAs(ctx, &var_routing_options_forwarding_table_chained_composite_next_hop, false)...)
@@ -4108,7 +4122,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
 	    config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients = make([]xml_System_Services_Extension_service_Notification_Allow_clients, len(var_system_services_extension_service_notification_allow_clients))
         
 		for i_system_services_extension_service_notification_allow_clients, v_system_services_extension_service_notification_allow_clients := range var_system_services_extension_service_notification_allow_clients {
-            config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients[i_system_services_extension_service_notification_allow_clients].Address = v_system_services_extension_service_notification_allow_clients.Address.ValueStringPointer()
+			var var_system_services_extension_service_notification_allow_clients_address []string
+			resp.Diagnostics.Append(v_system_services_extension_service_notification_allow_clients.Address.ElementsAs(ctx, &var_system_services_extension_service_notification_allow_clients_address, false)...)
+			for _, v_system_services_extension_service_notification_allow_clients_address := range var_system_services_extension_service_notification_allow_clients_address {
+				config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients[i_system_services_extension_service_notification_allow_clients].Address = append(config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients[i_system_services_extension_service_notification_allow_clients].Address, &v_system_services_extension_service_notification_allow_clients_address)
+			}
         }
         }
         }
@@ -4228,7 +4246,11 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
         
 		for i_system_extensions_providers_license_type, v_system_extensions_providers_license_type := range var_system_extensions_providers_license_type {
             config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Name = v_system_extensions_providers_license_type.Name.ValueStringPointer()
-            config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Deployment_scope = v_system_extensions_providers_license_type.Deployment_scope.ValueStringPointer()
+			var var_system_extensions_providers_license_type_deployment_scope []string
+			resp.Diagnostics.Append(v_system_extensions_providers_license_type.Deployment_scope.ElementsAs(ctx, &var_system_extensions_providers_license_type_deployment_scope, false)...)
+			for _, v_system_extensions_providers_license_type_deployment_scope := range var_system_extensions_providers_license_type_deployment_scope {
+				config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Deployment_scope = append(config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Deployment_scope, &v_system_extensions_providers_license_type_deployment_scope)
+			}
         }
         }
         }
@@ -4300,13 +4322,6 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         resp.Diagnostics.AddError("Failed to read group", err.Error())
         return
     }
-    state.Version = types.ListNull(types.ObjectType{AttrTypes: Groups_Model{}.AttrTypes()})
-    version_List := make([]Version_Model, len(config.Groups.Version))
-    for i_version, v_version := range config.Groups.Version {
-        var version_model Version_Model
-    }
-    state.Version, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Version_Model{}.AttrTypes()}, version_List)
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
     state.Chassis = types.ListNull(types.ObjectType{AttrTypes: Groups_Model{}.AttrTypes()})
     chassis_List := make([]Chassis_Model, len(config.Groups.Chassis))
     for i_chassis, v_chassis := range config.Groups.Chassis {
@@ -4315,14 +4330,14 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_chassis_aggregated_devices, v_chassis_aggregated_devices := range v_chassis.Aggregated_devices {
             var chassis_aggregated_devices_model Chassis_Aggregated_devices_Model
-            chassis_aggregated_devices_List[i_chassis_aggregated_devices] = chassis_aggregated_devices_model
+			chassis_aggregated_devices_List[i_chassis_aggregated_devices] = chassis_aggregated_devices_model
                 
         chassis_aggregated_devices_ethernet_List := make([]Chassis_Aggregated_devices_Ethernet_Model, len(v_chassis_aggregated_devices.Ethernet))
         
 		for i_chassis_aggregated_devices_ethernet, v_chassis_aggregated_devices_ethernet := range v_chassis_aggregated_devices.Ethernet {
             var chassis_aggregated_devices_ethernet_model Chassis_Aggregated_devices_Ethernet_Model
             chassis_aggregated_devices_ethernet_model.Device_count = types.StringPointerValue(v_chassis_aggregated_devices_ethernet.Device_count)
-            chassis_aggregated_devices_ethernet_List[i_chassis_aggregated_devices_ethernet] = chassis_aggregated_devices_ethernet_model
+			chassis_aggregated_devices_ethernet_List[i_chassis_aggregated_devices_ethernet] = chassis_aggregated_devices_ethernet_model
         }
         chassis_aggregated_devices_model.Ethernet, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Chassis_Aggregated_devices_Ethernet_Model{}.AttrTypes()}, chassis_aggregated_devices_ethernet_List)
         chassis_aggregated_devices_List[i_chassis_aggregated_devices] = chassis_aggregated_devices_model
@@ -4341,8 +4356,8 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_forwarding_options_storm_control_profiles, v_forwarding_options_storm_control_profiles := range v_forwarding_options.Storm_control_profiles {
             var forwarding_options_storm_control_profiles_model Forwarding_options_Storm_control_profiles_Model
             forwarding_options_storm_control_profiles_model.Name = types.StringPointerValue(v_forwarding_options_storm_control_profiles.Name)
-            forwarding_options_storm_control_profiles_List[i_forwarding_options_storm_control_profiles] = forwarding_options_storm_control_profiles_model
-            forwarding_options_storm_control_profiles_List[i_forwarding_options_storm_control_profiles] = forwarding_options_storm_control_profiles_model
+			forwarding_options_storm_control_profiles_List[i_forwarding_options_storm_control_profiles] = forwarding_options_storm_control_profiles_model
+			forwarding_options_storm_control_profiles_List[i_forwarding_options_storm_control_profiles] = forwarding_options_storm_control_profiles_model
                 
         forwarding_options_storm_control_profiles_all_List := make([]Forwarding_options_Storm_control_profiles_All_Model, len(v_forwarding_options_storm_control_profiles.All))
         
@@ -4363,120 +4378,125 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_interfaces_interface, v_interfaces_interface := range v_interfaces.Interface {
             var interfaces_interface_model Interfaces_Interface_Model
             interfaces_interface_model.Name = types.StringPointerValue(v_interfaces_interface.Name)
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
             interfaces_interface_model.Description = types.StringPointerValue(v_interfaces_interface.Description)
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
             interfaces_interface_model.Vlan_tagging = types.StringPointerValue(v_interfaces_interface.Vlan_tagging)
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
                 
         interfaces_interface_esi_List := make([]Interfaces_Interface_Esi_Model, len(v_interfaces_interface.Esi))
         
 		for i_interfaces_interface_esi, v_interfaces_interface_esi := range v_interfaces_interface.Esi {
             var interfaces_interface_esi_model Interfaces_Interface_Esi_Model
             interfaces_interface_esi_model.Identifier = types.StringPointerValue(v_interfaces_interface_esi.Identifier)
-            interfaces_interface_esi_List[i_interfaces_interface_esi] = interfaces_interface_esi_model
+			interfaces_interface_esi_List[i_interfaces_interface_esi] = interfaces_interface_esi_model
             interfaces_interface_esi_model.All_active = types.StringPointerValue(v_interfaces_interface_esi.All_active)
-            interfaces_interface_esi_List[i_interfaces_interface_esi] = interfaces_interface_esi_model
+			interfaces_interface_esi_List[i_interfaces_interface_esi] = interfaces_interface_esi_model
         }
         interfaces_interface_model.Esi, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Esi_Model{}.AttrTypes()}, interfaces_interface_esi_List)
         interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
                 
         interfaces_interface_ether_options_List := make([]Interfaces_Interface_Ether_options_Model, len(v_interfaces_interface.Ether_options))
         
 		for i_interfaces_interface_ether_options, v_interfaces_interface_ether_options := range v_interfaces_interface.Ether_options {
             var interfaces_interface_ether_options_model Interfaces_Interface_Ether_options_Model
-            interfaces_interface_ether_options_List[i_interfaces_interface_ether_options] = interfaces_interface_ether_options_model
+			interfaces_interface_ether_options_List[i_interfaces_interface_ether_options] = interfaces_interface_ether_options_model
                 
         interfaces_interface_ether_options_ieee_802_3ad_List := make([]Interfaces_Interface_Ether_options_Ieee_802_3ad_Model, len(v_interfaces_interface_ether_options.Ieee_802_3ad))
         
 		for i_interfaces_interface_ether_options_ieee_802_3ad, v_interfaces_interface_ether_options_ieee_802_3ad := range v_interfaces_interface_ether_options.Ieee_802_3ad {
             var interfaces_interface_ether_options_ieee_802_3ad_model Interfaces_Interface_Ether_options_Ieee_802_3ad_Model
             interfaces_interface_ether_options_ieee_802_3ad_model.Bundle = types.StringPointerValue(v_interfaces_interface_ether_options_ieee_802_3ad.Bundle)
-            interfaces_interface_ether_options_ieee_802_3ad_List[i_interfaces_interface_ether_options_ieee_802_3ad] = interfaces_interface_ether_options_ieee_802_3ad_model
+			interfaces_interface_ether_options_ieee_802_3ad_List[i_interfaces_interface_ether_options_ieee_802_3ad] = interfaces_interface_ether_options_ieee_802_3ad_model
         }
         interfaces_interface_ether_options_model.Ieee_802_3ad, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Ether_options_Ieee_802_3ad_Model{}.AttrTypes()}, interfaces_interface_ether_options_ieee_802_3ad_List)
         interfaces_interface_ether_options_List[i_interfaces_interface_ether_options] = interfaces_interface_ether_options_model
         }
         interfaces_interface_model.Ether_options, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Ether_options_Model{}.AttrTypes()}, interfaces_interface_ether_options_List)
         interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
                 
         interfaces_interface_aggregated_ether_options_List := make([]Interfaces_Interface_Aggregated_ether_options_Model, len(v_interfaces_interface.Aggregated_ether_options))
         
 		for i_interfaces_interface_aggregated_ether_options, v_interfaces_interface_aggregated_ether_options := range v_interfaces_interface.Aggregated_ether_options {
             var interfaces_interface_aggregated_ether_options_model Interfaces_Interface_Aggregated_ether_options_Model
-            interfaces_interface_aggregated_ether_options_List[i_interfaces_interface_aggregated_ether_options] = interfaces_interface_aggregated_ether_options_model
+			interfaces_interface_aggregated_ether_options_List[i_interfaces_interface_aggregated_ether_options] = interfaces_interface_aggregated_ether_options_model
                 
         interfaces_interface_aggregated_ether_options_lacp_List := make([]Interfaces_Interface_Aggregated_ether_options_Lacp_Model, len(v_interfaces_interface_aggregated_ether_options.Lacp))
         
 		for i_interfaces_interface_aggregated_ether_options_lacp, v_interfaces_interface_aggregated_ether_options_lacp := range v_interfaces_interface_aggregated_ether_options.Lacp {
             var interfaces_interface_aggregated_ether_options_lacp_model Interfaces_Interface_Aggregated_ether_options_Lacp_Model
             interfaces_interface_aggregated_ether_options_lacp_model.Active = types.StringPointerValue(v_interfaces_interface_aggregated_ether_options_lacp.Active)
-            interfaces_interface_aggregated_ether_options_lacp_List[i_interfaces_interface_aggregated_ether_options_lacp] = interfaces_interface_aggregated_ether_options_lacp_model
+			interfaces_interface_aggregated_ether_options_lacp_List[i_interfaces_interface_aggregated_ether_options_lacp] = interfaces_interface_aggregated_ether_options_lacp_model
             interfaces_interface_aggregated_ether_options_lacp_model.Periodic = types.StringPointerValue(v_interfaces_interface_aggregated_ether_options_lacp.Periodic)
-            interfaces_interface_aggregated_ether_options_lacp_List[i_interfaces_interface_aggregated_ether_options_lacp] = interfaces_interface_aggregated_ether_options_lacp_model
+			interfaces_interface_aggregated_ether_options_lacp_List[i_interfaces_interface_aggregated_ether_options_lacp] = interfaces_interface_aggregated_ether_options_lacp_model
             interfaces_interface_aggregated_ether_options_lacp_model.System_id = types.StringPointerValue(v_interfaces_interface_aggregated_ether_options_lacp.System_id)
-            interfaces_interface_aggregated_ether_options_lacp_List[i_interfaces_interface_aggregated_ether_options_lacp] = interfaces_interface_aggregated_ether_options_lacp_model
+			interfaces_interface_aggregated_ether_options_lacp_List[i_interfaces_interface_aggregated_ether_options_lacp] = interfaces_interface_aggregated_ether_options_lacp_model
         }
         interfaces_interface_aggregated_ether_options_model.Lacp, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Aggregated_ether_options_Lacp_Model{}.AttrTypes()}, interfaces_interface_aggregated_ether_options_lacp_List)
         interfaces_interface_aggregated_ether_options_List[i_interfaces_interface_aggregated_ether_options] = interfaces_interface_aggregated_ether_options_model
         }
         interfaces_interface_model.Aggregated_ether_options, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Aggregated_ether_options_Model{}.AttrTypes()}, interfaces_interface_aggregated_ether_options_List)
         interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
-            interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
+			interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
                 
         interfaces_interface_unit_List := make([]Interfaces_Interface_Unit_Model, len(v_interfaces_interface.Unit))
         
 		for i_interfaces_interface_unit, v_interfaces_interface_unit := range v_interfaces_interface.Unit {
             var interfaces_interface_unit_model Interfaces_Interface_Unit_Model
             interfaces_interface_unit_model.Name = types.StringPointerValue(v_interfaces_interface_unit.Name)
-            interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
+			interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
             interfaces_interface_unit_model.Description = types.StringPointerValue(v_interfaces_interface_unit.Description)
-            interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
+			interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
             interfaces_interface_unit_model.Vlan_id = types.StringPointerValue(v_interfaces_interface_unit.Vlan_id)
-            interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
-            interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
+			interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
+			interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
                 
         interfaces_interface_unit_family_List := make([]Interfaces_Interface_Unit_Family_Model, len(v_interfaces_interface_unit.Family))
         
 		for i_interfaces_interface_unit_family, v_interfaces_interface_unit_family := range v_interfaces_interface_unit.Family {
             var interfaces_interface_unit_family_model Interfaces_Interface_Unit_Family_Model
-            interfaces_interface_unit_family_List[i_interfaces_interface_unit_family] = interfaces_interface_unit_family_model
+			interfaces_interface_unit_family_List[i_interfaces_interface_unit_family] = interfaces_interface_unit_family_model
                 
         interfaces_interface_unit_family_inet_List := make([]Interfaces_Interface_Unit_Family_Inet_Model, len(v_interfaces_interface_unit_family.Inet))
         
 		for i_interfaces_interface_unit_family_inet, v_interfaces_interface_unit_family_inet := range v_interfaces_interface_unit_family.Inet {
             var interfaces_interface_unit_family_inet_model Interfaces_Interface_Unit_Family_Inet_Model
-            interfaces_interface_unit_family_inet_List[i_interfaces_interface_unit_family_inet] = interfaces_interface_unit_family_inet_model
+			interfaces_interface_unit_family_inet_List[i_interfaces_interface_unit_family_inet] = interfaces_interface_unit_family_inet_model
                 
         interfaces_interface_unit_family_inet_address_List := make([]Interfaces_Interface_Unit_Family_Inet_Address_Model, len(v_interfaces_interface_unit_family_inet.Address))
         
 		for i_interfaces_interface_unit_family_inet_address, v_interfaces_interface_unit_family_inet_address := range v_interfaces_interface_unit_family_inet.Address {
             var interfaces_interface_unit_family_inet_address_model Interfaces_Interface_Unit_Family_Inet_Address_Model
             interfaces_interface_unit_family_inet_address_model.Name = types.StringPointerValue(v_interfaces_interface_unit_family_inet_address.Name)
-            interfaces_interface_unit_family_inet_address_List[i_interfaces_interface_unit_family_inet_address] = interfaces_interface_unit_family_inet_address_model
+			interfaces_interface_unit_family_inet_address_List[i_interfaces_interface_unit_family_inet_address] = interfaces_interface_unit_family_inet_address_model
         }
         interfaces_interface_unit_family_inet_model.Address, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Unit_Family_Inet_Address_Model{}.AttrTypes()}, interfaces_interface_unit_family_inet_address_List)
         interfaces_interface_unit_family_inet_List[i_interfaces_interface_unit_family_inet] = interfaces_interface_unit_family_inet_model
         }
         interfaces_interface_unit_family_model.Inet, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Unit_Family_Inet_Model{}.AttrTypes()}, interfaces_interface_unit_family_inet_List)
         interfaces_interface_unit_family_List[i_interfaces_interface_unit_family] = interfaces_interface_unit_family_model
-            interfaces_interface_unit_family_List[i_interfaces_interface_unit_family] = interfaces_interface_unit_family_model
+			interfaces_interface_unit_family_List[i_interfaces_interface_unit_family] = interfaces_interface_unit_family_model
                 
         interfaces_interface_unit_family_ethernet_switching_List := make([]Interfaces_Interface_Unit_Family_Ethernet_switching_Model, len(v_interfaces_interface_unit_family.Ethernet_switching))
         
 		for i_interfaces_interface_unit_family_ethernet_switching, v_interfaces_interface_unit_family_ethernet_switching := range v_interfaces_interface_unit_family.Ethernet_switching {
             var interfaces_interface_unit_family_ethernet_switching_model Interfaces_Interface_Unit_Family_Ethernet_switching_Model
-            interfaces_interface_unit_family_ethernet_switching_List[i_interfaces_interface_unit_family_ethernet_switching] = interfaces_interface_unit_family_ethernet_switching_model
+			interfaces_interface_unit_family_ethernet_switching_List[i_interfaces_interface_unit_family_ethernet_switching] = interfaces_interface_unit_family_ethernet_switching_model
                 
         interfaces_interface_unit_family_ethernet_switching_vlan_List := make([]Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan_Model, len(v_interfaces_interface_unit_family_ethernet_switching.Vlan))
         
 		for i_interfaces_interface_unit_family_ethernet_switching_vlan, v_interfaces_interface_unit_family_ethernet_switching_vlan := range v_interfaces_interface_unit_family_ethernet_switching.Vlan {
             var interfaces_interface_unit_family_ethernet_switching_vlan_model Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan_Model
-            interfaces_interface_unit_family_ethernet_switching_vlan_model.Members = types.StringPointerValue(v_interfaces_interface_unit_family_ethernet_switching_vlan.Members)
-            interfaces_interface_unit_family_ethernet_switching_vlan_List[i_interfaces_interface_unit_family_ethernet_switching_vlan] = interfaces_interface_unit_family_ethernet_switching_vlan_model
+			var var_interfaces_interface_unit_family_ethernet_switching_members []*string
+			if v_interfaces_interface_unit_family_ethernet_switching_vlan.Members != nil {
+				var_interfaces_interface_unit_family_ethernet_switching_members = make([]*string, len(v_interfaces_interface_unit_family_ethernet_switching_vlan.Members))
+				copy(var_interfaces_interface_unit_family_ethernet_switching_members, v_interfaces_interface_unit_family_ethernet_switching_vlan.Members)
+			}
+			interfaces_interface_unit_family_ethernet_switching_vlan_model.Members, _ = types.ListValueFrom(ctx, types.StringType, var_interfaces_interface_unit_family_ethernet_switching_members)
+			interfaces_interface_unit_family_ethernet_switching_vlan_List[i_interfaces_interface_unit_family_ethernet_switching_vlan] = interfaces_interface_unit_family_ethernet_switching_vlan_model
         }
         interfaces_interface_unit_family_ethernet_switching_model.Vlan, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan_Model{}.AttrTypes()}, interfaces_interface_unit_family_ethernet_switching_vlan_List)
         interfaces_interface_unit_family_ethernet_switching_List[i_interfaces_interface_unit_family_ethernet_switching] = interfaces_interface_unit_family_ethernet_switching_model
@@ -4487,7 +4507,7 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         interfaces_interface_unit_model.Family, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Unit_Family_Model{}.AttrTypes()}, interfaces_interface_unit_family_List)
         interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
             interfaces_interface_unit_model.Mac = types.StringPointerValue(v_interfaces_interface_unit.Mac)
-            interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
+			interfaces_interface_unit_List[i_interfaces_interface_unit] = interfaces_interface_unit_model
         }
         interfaces_interface_model.Unit, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Interfaces_Interface_Unit_Model{}.AttrTypes()}, interfaces_interface_unit_List)
         interfaces_interface_List[i_interfaces_interface] = interfaces_interface_model
@@ -4506,86 +4526,91 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_policy_options_policy_statement, v_policy_options_policy_statement := range v_policy_options.Policy_statement {
             var policy_options_policy_statement_model Policy_options_Policy_statement_Model
             policy_options_policy_statement_model.Name = types.StringPointerValue(v_policy_options_policy_statement.Name)
-            policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
-            policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
+			policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
+			policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
                 
         policy_options_policy_statement_term_List := make([]Policy_options_Policy_statement_Term_Model, len(v_policy_options_policy_statement.Term))
         
 		for i_policy_options_policy_statement_term, v_policy_options_policy_statement_term := range v_policy_options_policy_statement.Term {
             var policy_options_policy_statement_term_model Policy_options_Policy_statement_Term_Model
             policy_options_policy_statement_term_model.Name = types.StringPointerValue(v_policy_options_policy_statement_term.Name)
-            policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
-            policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
+			policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
+			policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
                 
         policy_options_policy_statement_term_from_List := make([]Policy_options_Policy_statement_Term_From_Model, len(v_policy_options_policy_statement_term.From))
         
 		for i_policy_options_policy_statement_term_from, v_policy_options_policy_statement_term_from := range v_policy_options_policy_statement_term.From {
             var policy_options_policy_statement_term_from_model Policy_options_Policy_statement_Term_From_Model
-            policy_options_policy_statement_term_from_model.Protocol = types.StringPointerValue(v_policy_options_policy_statement_term_from.Protocol)
-            policy_options_policy_statement_term_from_List[i_policy_options_policy_statement_term_from] = policy_options_policy_statement_term_from_model
-            policy_options_policy_statement_term_from_List[i_policy_options_policy_statement_term_from] = policy_options_policy_statement_term_from_model
+			var var_policy_options_policy_statement_term_protocol []*string
+			if v_policy_options_policy_statement_term_from.Protocol != nil {
+				var_policy_options_policy_statement_term_protocol = make([]*string, len(v_policy_options_policy_statement_term_from.Protocol))
+				copy(var_policy_options_policy_statement_term_protocol, v_policy_options_policy_statement_term_from.Protocol)
+			}
+			policy_options_policy_statement_term_from_model.Protocol, _ = types.ListValueFrom(ctx, types.StringType, var_policy_options_policy_statement_term_protocol)
+			policy_options_policy_statement_term_from_List[i_policy_options_policy_statement_term_from] = policy_options_policy_statement_term_from_model
+			policy_options_policy_statement_term_from_List[i_policy_options_policy_statement_term_from] = policy_options_policy_statement_term_from_model
                 
         policy_options_policy_statement_term_from_route_filter_List := make([]Policy_options_Policy_statement_Term_From_Route_filter_Model, len(v_policy_options_policy_statement_term_from.Route_filter))
         
 		for i_policy_options_policy_statement_term_from_route_filter, v_policy_options_policy_statement_term_from_route_filter := range v_policy_options_policy_statement_term_from.Route_filter {
             var policy_options_policy_statement_term_from_route_filter_model Policy_options_Policy_statement_Term_From_Route_filter_Model
             policy_options_policy_statement_term_from_route_filter_model.Address = types.StringPointerValue(v_policy_options_policy_statement_term_from_route_filter.Address)
-            policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
+			policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
             policy_options_policy_statement_term_from_route_filter_model.Exact = types.StringPointerValue(v_policy_options_policy_statement_term_from_route_filter.Exact)
-            policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
+			policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
             policy_options_policy_statement_term_from_route_filter_model.Orlonger = types.StringPointerValue(v_policy_options_policy_statement_term_from_route_filter.Orlonger)
-            policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
+			policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
             policy_options_policy_statement_term_from_route_filter_model.Prefix_length_range = types.StringPointerValue(v_policy_options_policy_statement_term_from_route_filter.Prefix_length_range)
-            policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
+			policy_options_policy_statement_term_from_route_filter_List[i_policy_options_policy_statement_term_from_route_filter] = policy_options_policy_statement_term_from_route_filter_model
         }
         policy_options_policy_statement_term_from_model.Route_filter, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Policy_statement_Term_From_Route_filter_Model{}.AttrTypes()}, policy_options_policy_statement_term_from_route_filter_List)
         policy_options_policy_statement_term_from_List[i_policy_options_policy_statement_term_from] = policy_options_policy_statement_term_from_model
         }
         policy_options_policy_statement_term_model.From, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Policy_statement_Term_From_Model{}.AttrTypes()}, policy_options_policy_statement_term_from_List)
         policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
-            policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
+			policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
                 
         policy_options_policy_statement_term_then_List := make([]Policy_options_Policy_statement_Term_Then_Model, len(v_policy_options_policy_statement_term.Then))
         
 		for i_policy_options_policy_statement_term_then, v_policy_options_policy_statement_term_then := range v_policy_options_policy_statement_term.Then {
             var policy_options_policy_statement_term_then_model Policy_options_Policy_statement_Term_Then_Model
-            policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
+			policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
                 
         policy_options_policy_statement_term_then_community_List := make([]Policy_options_Policy_statement_Term_Then_Community_Model, len(v_policy_options_policy_statement_term_then.Community))
         
 		for i_policy_options_policy_statement_term_then_community, v_policy_options_policy_statement_term_then_community := range v_policy_options_policy_statement_term_then.Community {
             var policy_options_policy_statement_term_then_community_model Policy_options_Policy_statement_Term_Then_Community_Model
             policy_options_policy_statement_term_then_community_model.Add = types.StringPointerValue(v_policy_options_policy_statement_term_then_community.Add)
-            policy_options_policy_statement_term_then_community_List[i_policy_options_policy_statement_term_then_community] = policy_options_policy_statement_term_then_community_model
+			policy_options_policy_statement_term_then_community_List[i_policy_options_policy_statement_term_then_community] = policy_options_policy_statement_term_then_community_model
             policy_options_policy_statement_term_then_community_model.Community_name = types.StringPointerValue(v_policy_options_policy_statement_term_then_community.Community_name)
-            policy_options_policy_statement_term_then_community_List[i_policy_options_policy_statement_term_then_community] = policy_options_policy_statement_term_then_community_model
+			policy_options_policy_statement_term_then_community_List[i_policy_options_policy_statement_term_then_community] = policy_options_policy_statement_term_then_community_model
         }
         policy_options_policy_statement_term_then_model.Community, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Policy_statement_Term_Then_Community_Model{}.AttrTypes()}, policy_options_policy_statement_term_then_community_List)
         policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
             policy_options_policy_statement_term_then_model.Accept = types.StringPointerValue(v_policy_options_policy_statement_term_then.Accept)
-            policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
+			policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
             policy_options_policy_statement_term_then_model.Reject = types.StringPointerValue(v_policy_options_policy_statement_term_then.Reject)
-            policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
+			policy_options_policy_statement_term_then_List[i_policy_options_policy_statement_term_then] = policy_options_policy_statement_term_then_model
         }
         policy_options_policy_statement_term_model.Then, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Policy_statement_Term_Then_Model{}.AttrTypes()}, policy_options_policy_statement_term_then_List)
         policy_options_policy_statement_term_List[i_policy_options_policy_statement_term] = policy_options_policy_statement_term_model
         }
         policy_options_policy_statement_model.Term, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Policy_statement_Term_Model{}.AttrTypes()}, policy_options_policy_statement_term_List)
         policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
-            policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
+			policy_options_policy_statement_List[i_policy_options_policy_statement] = policy_options_policy_statement_model
                 
         policy_options_policy_statement_then_List := make([]Policy_options_Policy_statement_Then_Model, len(v_policy_options_policy_statement.Then))
         
 		for i_policy_options_policy_statement_then, v_policy_options_policy_statement_then := range v_policy_options_policy_statement.Then {
             var policy_options_policy_statement_then_model Policy_options_Policy_statement_Then_Model
-            policy_options_policy_statement_then_List[i_policy_options_policy_statement_then] = policy_options_policy_statement_then_model
+			policy_options_policy_statement_then_List[i_policy_options_policy_statement_then] = policy_options_policy_statement_then_model
                 
         policy_options_policy_statement_then_load_balance_List := make([]Policy_options_Policy_statement_Then_Load_balance_Model, len(v_policy_options_policy_statement_then.Load_balance))
         
 		for i_policy_options_policy_statement_then_load_balance, v_policy_options_policy_statement_then_load_balance := range v_policy_options_policy_statement_then.Load_balance {
             var policy_options_policy_statement_then_load_balance_model Policy_options_Policy_statement_Then_Load_balance_Model
             policy_options_policy_statement_then_load_balance_model.Per_packet = types.StringPointerValue(v_policy_options_policy_statement_then_load_balance.Per_packet)
-            policy_options_policy_statement_then_load_balance_List[i_policy_options_policy_statement_then_load_balance] = policy_options_policy_statement_then_load_balance_model
+			policy_options_policy_statement_then_load_balance_List[i_policy_options_policy_statement_then_load_balance] = policy_options_policy_statement_then_load_balance_model
         }
         policy_options_policy_statement_then_model.Load_balance, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Policy_statement_Then_Load_balance_Model{}.AttrTypes()}, policy_options_policy_statement_then_load_balance_List)
         policy_options_policy_statement_then_List[i_policy_options_policy_statement_then] = policy_options_policy_statement_then_model
@@ -4600,9 +4625,14 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_policy_options_community, v_policy_options_community := range v_policy_options.Community {
             var policy_options_community_model Policy_options_Community_Model
             policy_options_community_model.Name = types.StringPointerValue(v_policy_options_community.Name)
-            policy_options_community_List[i_policy_options_community] = policy_options_community_model
-            policy_options_community_model.Members = types.StringPointerValue(v_policy_options_community.Members)
-            policy_options_community_List[i_policy_options_community] = policy_options_community_model
+			policy_options_community_List[i_policy_options_community] = policy_options_community_model
+			var var_policy_options_members []*string
+			if v_policy_options_community.Members != nil {
+				var_policy_options_members = make([]*string, len(v_policy_options_community.Members))
+				copy(var_policy_options_members, v_policy_options_community.Members)
+			}
+			policy_options_community_model.Members, _ = types.ListValueFrom(ctx, types.StringType, var_policy_options_members)
+			policy_options_community_List[i_policy_options_community] = policy_options_community_model
         }
         policy_options_model.Community, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Policy_options_Community_Model{}.AttrTypes()}, policy_options_community_List)
         policy_options_List[i_policy_options] = policy_options_model
@@ -4617,65 +4647,70 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_protocols_bgp, v_protocols_bgp := range v_protocols.Bgp {
             var protocols_bgp_model Protocols_Bgp_Model
-            protocols_bgp_List[i_protocols_bgp] = protocols_bgp_model
+			protocols_bgp_List[i_protocols_bgp] = protocols_bgp_model
                 
         protocols_bgp_group_List := make([]Protocols_Bgp_Group_Model, len(v_protocols_bgp.Group))
         
 		for i_protocols_bgp_group, v_protocols_bgp_group := range v_protocols_bgp.Group {
             var protocols_bgp_group_model Protocols_Bgp_Group_Model
             protocols_bgp_group_model.Name = types.StringPointerValue(v_protocols_bgp_group.Name)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
             protocols_bgp_group_model.Type = types.StringPointerValue(v_protocols_bgp_group.Type)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_multihop_List := make([]Protocols_Bgp_Group_Multihop_Model, len(v_protocols_bgp_group.Multihop))
         
 		for i_protocols_bgp_group_multihop, v_protocols_bgp_group_multihop := range v_protocols_bgp_group.Multihop {
             var protocols_bgp_group_multihop_model Protocols_Bgp_Group_Multihop_Model
             protocols_bgp_group_multihop_model.No_nexthop_change = types.StringPointerValue(v_protocols_bgp_group_multihop.No_nexthop_change)
-            protocols_bgp_group_multihop_List[i_protocols_bgp_group_multihop] = protocols_bgp_group_multihop_model
+			protocols_bgp_group_multihop_List[i_protocols_bgp_group_multihop] = protocols_bgp_group_multihop_model
         }
         protocols_bgp_group_model.Multihop, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Multihop_Model{}.AttrTypes()}, protocols_bgp_group_multihop_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
             protocols_bgp_group_model.Local_address = types.StringPointerValue(v_protocols_bgp_group.Local_address)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
             protocols_bgp_group_model.Mtu_discovery = types.StringPointerValue(v_protocols_bgp_group.Mtu_discovery)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_model.Import = types.StringPointerValue(v_protocols_bgp_group.Import)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			var var_protocols_bgp_import []*string
+			if v_protocols_bgp_group.Import != nil {
+				var_protocols_bgp_import = make([]*string, len(v_protocols_bgp_group.Import))
+				copy(var_protocols_bgp_import, v_protocols_bgp_group.Import)
+			}
+			protocols_bgp_group_model.Import, _ = types.ListValueFrom(ctx, types.StringType, var_protocols_bgp_import)
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_family_List := make([]Protocols_Bgp_Group_Family_Model, len(v_protocols_bgp_group.Family))
         
 		for i_protocols_bgp_group_family, v_protocols_bgp_group_family := range v_protocols_bgp_group.Family {
             var protocols_bgp_group_family_model Protocols_Bgp_Group_Family_Model
-            protocols_bgp_group_family_List[i_protocols_bgp_group_family] = protocols_bgp_group_family_model
+			protocols_bgp_group_family_List[i_protocols_bgp_group_family] = protocols_bgp_group_family_model
                 
         protocols_bgp_group_family_evpn_List := make([]Protocols_Bgp_Group_Family_Evpn_Model, len(v_protocols_bgp_group_family.Evpn))
         
 		for i_protocols_bgp_group_family_evpn, v_protocols_bgp_group_family_evpn := range v_protocols_bgp_group_family.Evpn {
             var protocols_bgp_group_family_evpn_model Protocols_Bgp_Group_Family_Evpn_Model
-            protocols_bgp_group_family_evpn_List[i_protocols_bgp_group_family_evpn] = protocols_bgp_group_family_evpn_model
+			protocols_bgp_group_family_evpn_List[i_protocols_bgp_group_family_evpn] = protocols_bgp_group_family_evpn_model
                 
         protocols_bgp_group_family_evpn_signaling_List := make([]Protocols_Bgp_Group_Family_Evpn_Signaling_Model, len(v_protocols_bgp_group_family_evpn.Signaling))
         
 		for i_protocols_bgp_group_family_evpn_signaling, v_protocols_bgp_group_family_evpn_signaling := range v_protocols_bgp_group_family_evpn.Signaling {
             var protocols_bgp_group_family_evpn_signaling_model Protocols_Bgp_Group_Family_Evpn_Signaling_Model
-            protocols_bgp_group_family_evpn_signaling_List[i_protocols_bgp_group_family_evpn_signaling] = protocols_bgp_group_family_evpn_signaling_model
+			protocols_bgp_group_family_evpn_signaling_List[i_protocols_bgp_group_family_evpn_signaling] = protocols_bgp_group_family_evpn_signaling_model
                 
         protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_List := make([]Protocols_Bgp_Group_Family_Evpn_Signaling_Delay_route_advertisements_Model, len(v_protocols_bgp_group_family_evpn_signaling.Delay_route_advertisements))
         
 		for i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements, v_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements := range v_protocols_bgp_group_family_evpn_signaling.Delay_route_advertisements {
             var protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_model Protocols_Bgp_Group_Family_Evpn_Signaling_Delay_route_advertisements_Model
-            protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_List[i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements] = protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_model
+			protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_List[i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements] = protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_model
                 
         protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_List := make([]Protocols_Bgp_Group_Family_Evpn_Signaling_Delay_route_advertisements_Minimum_delay_Model, len(v_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements.Minimum_delay))
         
 		for i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay, v_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay := range v_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements.Minimum_delay {
             var protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_model Protocols_Bgp_Group_Family_Evpn_Signaling_Delay_route_advertisements_Minimum_delay_Model
             protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_model.Routing_uptime = types.StringPointerValue(v_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay.Routing_uptime)
-            protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_List[i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay] = protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_model
+			protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_List[i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay] = protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_model
         }
         protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_model.Minimum_delay, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Family_Evpn_Signaling_Delay_route_advertisements_Minimum_delay_Model{}.AttrTypes()}, protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_minimum_delay_List)
         protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_List[i_protocols_bgp_group_family_evpn_signaling_delay_route_advertisements] = protocols_bgp_group_family_evpn_signaling_delay_route_advertisements_model
@@ -4691,61 +4726,71 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         }
         protocols_bgp_group_model.Family, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Family_Model{}.AttrTypes()}, protocols_bgp_group_family_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_model.Export = types.StringPointerValue(v_protocols_bgp_group.Export)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			var var_protocols_bgp_export []*string
+			if v_protocols_bgp_group.Export != nil {
+				var_protocols_bgp_export = make([]*string, len(v_protocols_bgp_group.Export))
+				copy(var_protocols_bgp_export, v_protocols_bgp_group.Export)
+			}
+			protocols_bgp_group_model.Export, _ = types.ListValueFrom(ctx, types.StringType, var_protocols_bgp_export)
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
             protocols_bgp_group_model.Vpn_apply_export = types.StringPointerValue(v_protocols_bgp_group.Vpn_apply_export)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
             protocols_bgp_group_model.Cluster = types.StringPointerValue(v_protocols_bgp_group.Cluster)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_local_as_List := make([]Protocols_Bgp_Group_Local_as_Model, len(v_protocols_bgp_group.Local_as))
         
 		for i_protocols_bgp_group_local_as, v_protocols_bgp_group_local_as := range v_protocols_bgp_group.Local_as {
             var protocols_bgp_group_local_as_model Protocols_Bgp_Group_Local_as_Model
             protocols_bgp_group_local_as_model.As_number = types.StringPointerValue(v_protocols_bgp_group_local_as.As_number)
-            protocols_bgp_group_local_as_List[i_protocols_bgp_group_local_as] = protocols_bgp_group_local_as_model
+			protocols_bgp_group_local_as_List[i_protocols_bgp_group_local_as] = protocols_bgp_group_local_as_model
         }
         protocols_bgp_group_model.Local_as, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Local_as_Model{}.AttrTypes()}, protocols_bgp_group_local_as_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_multipath_List := make([]Protocols_Bgp_Group_Multipath_Model, len(v_protocols_bgp_group.Multipath))
         
 		for i_protocols_bgp_group_multipath, v_protocols_bgp_group_multipath := range v_protocols_bgp_group.Multipath {
             var protocols_bgp_group_multipath_model Protocols_Bgp_Group_Multipath_Model
             protocols_bgp_group_multipath_model.Multiple_as = types.StringPointerValue(v_protocols_bgp_group_multipath.Multiple_as)
-            protocols_bgp_group_multipath_List[i_protocols_bgp_group_multipath] = protocols_bgp_group_multipath_model
+			protocols_bgp_group_multipath_List[i_protocols_bgp_group_multipath] = protocols_bgp_group_multipath_model
         }
         protocols_bgp_group_model.Multipath, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Multipath_Model{}.AttrTypes()}, protocols_bgp_group_multipath_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_bfd_liveness_detection_List := make([]Protocols_Bgp_Group_Bfd_liveness_detection_Model, len(v_protocols_bgp_group.Bfd_liveness_detection))
         
 		for i_protocols_bgp_group_bfd_liveness_detection, v_protocols_bgp_group_bfd_liveness_detection := range v_protocols_bgp_group.Bfd_liveness_detection {
             var protocols_bgp_group_bfd_liveness_detection_model Protocols_Bgp_Group_Bfd_liveness_detection_Model
             protocols_bgp_group_bfd_liveness_detection_model.Minimum_interval = types.StringPointerValue(v_protocols_bgp_group_bfd_liveness_detection.Minimum_interval)
-            protocols_bgp_group_bfd_liveness_detection_List[i_protocols_bgp_group_bfd_liveness_detection] = protocols_bgp_group_bfd_liveness_detection_model
+			protocols_bgp_group_bfd_liveness_detection_List[i_protocols_bgp_group_bfd_liveness_detection] = protocols_bgp_group_bfd_liveness_detection_model
             protocols_bgp_group_bfd_liveness_detection_model.Multiplier = types.StringPointerValue(v_protocols_bgp_group_bfd_liveness_detection.Multiplier)
-            protocols_bgp_group_bfd_liveness_detection_List[i_protocols_bgp_group_bfd_liveness_detection] = protocols_bgp_group_bfd_liveness_detection_model
+			protocols_bgp_group_bfd_liveness_detection_List[i_protocols_bgp_group_bfd_liveness_detection] = protocols_bgp_group_bfd_liveness_detection_model
         }
         protocols_bgp_group_model.Bfd_liveness_detection, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Bfd_liveness_detection_Model{}.AttrTypes()}, protocols_bgp_group_bfd_liveness_detection_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_model.Allow = types.StringPointerValue(v_protocols_bgp_group.Allow)
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-            protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			var var_protocols_bgp_allow []*string
+			if v_protocols_bgp_group.Allow != nil {
+				var_protocols_bgp_allow = make([]*string, len(v_protocols_bgp_group.Allow))
+				copy(var_protocols_bgp_allow, v_protocols_bgp_group.Allow)
+			}
+			protocols_bgp_group_model.Allow, _ = types.ListValueFrom(ctx, types.StringType, var_protocols_bgp_allow)
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
+			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_neighbor_List := make([]Protocols_Bgp_Group_Neighbor_Model, len(v_protocols_bgp_group.Neighbor))
         
 		for i_protocols_bgp_group_neighbor, v_protocols_bgp_group_neighbor := range v_protocols_bgp_group.Neighbor {
             var protocols_bgp_group_neighbor_model Protocols_Bgp_Group_Neighbor_Model
             protocols_bgp_group_neighbor_model.Name = types.StringPointerValue(v_protocols_bgp_group_neighbor.Name)
-            protocols_bgp_group_neighbor_List[i_protocols_bgp_group_neighbor] = protocols_bgp_group_neighbor_model
+			protocols_bgp_group_neighbor_List[i_protocols_bgp_group_neighbor] = protocols_bgp_group_neighbor_model
             protocols_bgp_group_neighbor_model.Description = types.StringPointerValue(v_protocols_bgp_group_neighbor.Description)
-            protocols_bgp_group_neighbor_List[i_protocols_bgp_group_neighbor] = protocols_bgp_group_neighbor_model
+			protocols_bgp_group_neighbor_List[i_protocols_bgp_group_neighbor] = protocols_bgp_group_neighbor_model
             protocols_bgp_group_neighbor_model.Peer_as = types.StringPointerValue(v_protocols_bgp_group_neighbor.Peer_as)
-            protocols_bgp_group_neighbor_List[i_protocols_bgp_group_neighbor] = protocols_bgp_group_neighbor_model
+			protocols_bgp_group_neighbor_List[i_protocols_bgp_group_neighbor] = protocols_bgp_group_neighbor_model
         }
         protocols_bgp_group_model.Neighbor, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Neighbor_Model{}.AttrTypes()}, protocols_bgp_group_neighbor_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
@@ -4760,15 +4805,20 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_protocols_evpn, v_protocols_evpn := range v_protocols.Evpn {
             var protocols_evpn_model Protocols_Evpn_Model
             protocols_evpn_model.Encapsulation = types.StringPointerValue(v_protocols_evpn.Encapsulation)
-            protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
+			protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
             protocols_evpn_model.Multicast_mode = types.StringPointerValue(v_protocols_evpn.Multicast_mode)
-            protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
+			protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
             protocols_evpn_model.Default_gateway = types.StringPointerValue(v_protocols_evpn.Default_gateway)
-            protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
-            protocols_evpn_model.Extended_vni_list = types.StringPointerValue(v_protocols_evpn.Extended_vni_list)
-            protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
+			protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
+			var var_protocols_extended_vni_list []*string
+			if v_protocols_evpn.Extended_vni_list != nil {
+				var_protocols_extended_vni_list = make([]*string, len(v_protocols_evpn.Extended_vni_list))
+				copy(var_protocols_extended_vni_list, v_protocols_evpn.Extended_vni_list)
+			}
+			protocols_evpn_model.Extended_vni_list, _ = types.ListValueFrom(ctx, types.StringType, var_protocols_extended_vni_list)
+			protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
             protocols_evpn_model.No_core_isolation = types.StringPointerValue(v_protocols_evpn.No_core_isolation)
-            protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
+			protocols_evpn_List[i_protocols_evpn] = protocols_evpn_model
         }
         protocols_model.Evpn, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Evpn_Model{}.AttrTypes()}, protocols_evpn_List)
         protocols_List[i_protocols] = protocols_model
@@ -4776,14 +4826,14 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_protocols_lldp, v_protocols_lldp := range v_protocols.Lldp {
             var protocols_lldp_model Protocols_Lldp_Model
-            protocols_lldp_List[i_protocols_lldp] = protocols_lldp_model
+			protocols_lldp_List[i_protocols_lldp] = protocols_lldp_model
                 
         protocols_lldp_interface_List := make([]Protocols_Lldp_Interface_Model, len(v_protocols_lldp.Interface))
         
 		for i_protocols_lldp_interface, v_protocols_lldp_interface := range v_protocols_lldp.Interface {
             var protocols_lldp_interface_model Protocols_Lldp_Interface_Model
             protocols_lldp_interface_model.Name = types.StringPointerValue(v_protocols_lldp_interface.Name)
-            protocols_lldp_interface_List[i_protocols_lldp_interface] = protocols_lldp_interface_model
+			protocols_lldp_interface_List[i_protocols_lldp_interface] = protocols_lldp_interface_model
         }
         protocols_lldp_model.Interface, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Lldp_Interface_Model{}.AttrTypes()}, protocols_lldp_interface_List)
         protocols_lldp_List[i_protocols_lldp] = protocols_lldp_model
@@ -4794,14 +4844,14 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_protocols_igmp_snooping, v_protocols_igmp_snooping := range v_protocols.Igmp_snooping {
             var protocols_igmp_snooping_model Protocols_Igmp_snooping_Model
-            protocols_igmp_snooping_List[i_protocols_igmp_snooping] = protocols_igmp_snooping_model
+			protocols_igmp_snooping_List[i_protocols_igmp_snooping] = protocols_igmp_snooping_model
                 
         protocols_igmp_snooping_vlan_List := make([]Protocols_Igmp_snooping_Vlan_Model, len(v_protocols_igmp_snooping.Vlan))
         
 		for i_protocols_igmp_snooping_vlan, v_protocols_igmp_snooping_vlan := range v_protocols_igmp_snooping.Vlan {
             var protocols_igmp_snooping_vlan_model Protocols_Igmp_snooping_Vlan_Model
             protocols_igmp_snooping_vlan_model.Name = types.StringPointerValue(v_protocols_igmp_snooping_vlan.Name)
-            protocols_igmp_snooping_vlan_List[i_protocols_igmp_snooping_vlan] = protocols_igmp_snooping_vlan_model
+			protocols_igmp_snooping_vlan_List[i_protocols_igmp_snooping_vlan] = protocols_igmp_snooping_vlan_model
         }
         protocols_igmp_snooping_model.Vlan, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Igmp_snooping_Vlan_Model{}.AttrTypes()}, protocols_igmp_snooping_vlan_List)
         protocols_igmp_snooping_List[i_protocols_igmp_snooping] = protocols_igmp_snooping_model
@@ -4820,55 +4870,55 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_routing_instances_instance, v_routing_instances_instance := range v_routing_instances.Instance {
             var routing_instances_instance_model Routing_instances_Instance_Model
             routing_instances_instance_model.Name = types.StringPointerValue(v_routing_instances_instance.Name)
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
             routing_instances_instance_model.Instance_type = types.StringPointerValue(v_routing_instances_instance.Instance_type)
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
                 
         routing_instances_instance_interface_List := make([]Routing_instances_Instance_Interface_Model, len(v_routing_instances_instance.Interface))
         
 		for i_routing_instances_instance_interface, v_routing_instances_instance_interface := range v_routing_instances_instance.Interface {
             var routing_instances_instance_interface_model Routing_instances_Instance_Interface_Model
             routing_instances_instance_interface_model.Name = types.StringPointerValue(v_routing_instances_instance_interface.Name)
-            routing_instances_instance_interface_List[i_routing_instances_instance_interface] = routing_instances_instance_interface_model
+			routing_instances_instance_interface_List[i_routing_instances_instance_interface] = routing_instances_instance_interface_model
         }
         routing_instances_instance_model.Interface, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Interface_Model{}.AttrTypes()}, routing_instances_instance_interface_List)
         routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
                 
         routing_instances_instance_route_distinguisher_List := make([]Routing_instances_Instance_Route_distinguisher_Model, len(v_routing_instances_instance.Route_distinguisher))
         
 		for i_routing_instances_instance_route_distinguisher, v_routing_instances_instance_route_distinguisher := range v_routing_instances_instance.Route_distinguisher {
             var routing_instances_instance_route_distinguisher_model Routing_instances_Instance_Route_distinguisher_Model
             routing_instances_instance_route_distinguisher_model.Rd_type = types.StringPointerValue(v_routing_instances_instance_route_distinguisher.Rd_type)
-            routing_instances_instance_route_distinguisher_List[i_routing_instances_instance_route_distinguisher] = routing_instances_instance_route_distinguisher_model
+			routing_instances_instance_route_distinguisher_List[i_routing_instances_instance_route_distinguisher] = routing_instances_instance_route_distinguisher_model
         }
         routing_instances_instance_model.Route_distinguisher, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Route_distinguisher_Model{}.AttrTypes()}, routing_instances_instance_route_distinguisher_List)
         routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
                 
         routing_instances_instance_vrf_target_List := make([]Routing_instances_Instance_Vrf_target_Model, len(v_routing_instances_instance.Vrf_target))
         
 		for i_routing_instances_instance_vrf_target, v_routing_instances_instance_vrf_target := range v_routing_instances_instance.Vrf_target {
             var routing_instances_instance_vrf_target_model Routing_instances_Instance_Vrf_target_Model
             routing_instances_instance_vrf_target_model.Community = types.StringPointerValue(v_routing_instances_instance_vrf_target.Community)
-            routing_instances_instance_vrf_target_List[i_routing_instances_instance_vrf_target] = routing_instances_instance_vrf_target_model
+			routing_instances_instance_vrf_target_List[i_routing_instances_instance_vrf_target] = routing_instances_instance_vrf_target_model
         }
         routing_instances_instance_model.Vrf_target, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Vrf_target_Model{}.AttrTypes()}, routing_instances_instance_vrf_target_List)
         routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
                 
         routing_instances_instance_vrf_table_label_List := make([]Routing_instances_Instance_Vrf_table_label_Model, len(v_routing_instances_instance.Vrf_table_label))
         
         routing_instances_instance_model.Vrf_table_label, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Vrf_table_label_Model{}.AttrTypes()}, routing_instances_instance_vrf_table_label_List)
         routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
                 
         routing_instances_instance_routing_options_List := make([]Routing_instances_Instance_Routing_options_Model, len(v_routing_instances_instance.Routing_options))
         
 		for i_routing_instances_instance_routing_options, v_routing_instances_instance_routing_options := range v_routing_instances_instance.Routing_options {
             var routing_instances_instance_routing_options_model Routing_instances_Instance_Routing_options_Model
-            routing_instances_instance_routing_options_List[i_routing_instances_instance_routing_options] = routing_instances_instance_routing_options_model
+			routing_instances_instance_routing_options_List[i_routing_instances_instance_routing_options] = routing_instances_instance_routing_options_model
                 
         routing_instances_instance_routing_options_auto_export_List := make([]Routing_instances_Instance_Routing_options_Auto_export_Model, len(v_routing_instances_instance_routing_options.Auto_export))
         
@@ -4877,38 +4927,43 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         }
         routing_instances_instance_model.Routing_options, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Routing_options_Model{}.AttrTypes()}, routing_instances_instance_routing_options_List)
         routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
-            routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
+			routing_instances_instance_List[i_routing_instances_instance] = routing_instances_instance_model
                 
         routing_instances_instance_protocols_List := make([]Routing_instances_Instance_Protocols_Model, len(v_routing_instances_instance.Protocols))
         
 		for i_routing_instances_instance_protocols, v_routing_instances_instance_protocols := range v_routing_instances_instance.Protocols {
             var routing_instances_instance_protocols_model Routing_instances_Instance_Protocols_Model
-            routing_instances_instance_protocols_List[i_routing_instances_instance_protocols] = routing_instances_instance_protocols_model
+			routing_instances_instance_protocols_List[i_routing_instances_instance_protocols] = routing_instances_instance_protocols_model
                 
         routing_instances_instance_protocols_ospf_List := make([]Routing_instances_Instance_Protocols_Ospf_Model, len(v_routing_instances_instance_protocols.Ospf))
         
 		for i_routing_instances_instance_protocols_ospf, v_routing_instances_instance_protocols_ospf := range v_routing_instances_instance_protocols.Ospf {
             var routing_instances_instance_protocols_ospf_model Routing_instances_Instance_Protocols_Ospf_Model
-            routing_instances_instance_protocols_ospf_model.Export = types.StringPointerValue(v_routing_instances_instance_protocols_ospf.Export)
-            routing_instances_instance_protocols_ospf_List[i_routing_instances_instance_protocols_ospf] = routing_instances_instance_protocols_ospf_model
-            routing_instances_instance_protocols_ospf_List[i_routing_instances_instance_protocols_ospf] = routing_instances_instance_protocols_ospf_model
+			var var_routing_instances_instance_protocols_export []*string
+			if v_routing_instances_instance_protocols_ospf.Export != nil {
+				var_routing_instances_instance_protocols_export = make([]*string, len(v_routing_instances_instance_protocols_ospf.Export))
+				copy(var_routing_instances_instance_protocols_export, v_routing_instances_instance_protocols_ospf.Export)
+			}
+			routing_instances_instance_protocols_ospf_model.Export, _ = types.ListValueFrom(ctx, types.StringType, var_routing_instances_instance_protocols_export)
+			routing_instances_instance_protocols_ospf_List[i_routing_instances_instance_protocols_ospf] = routing_instances_instance_protocols_ospf_model
+			routing_instances_instance_protocols_ospf_List[i_routing_instances_instance_protocols_ospf] = routing_instances_instance_protocols_ospf_model
                 
         routing_instances_instance_protocols_ospf_area_List := make([]Routing_instances_Instance_Protocols_Ospf_Area_Model, len(v_routing_instances_instance_protocols_ospf.Area))
         
 		for i_routing_instances_instance_protocols_ospf_area, v_routing_instances_instance_protocols_ospf_area := range v_routing_instances_instance_protocols_ospf.Area {
             var routing_instances_instance_protocols_ospf_area_model Routing_instances_Instance_Protocols_Ospf_Area_Model
             routing_instances_instance_protocols_ospf_area_model.Name = types.StringPointerValue(v_routing_instances_instance_protocols_ospf_area.Name)
-            routing_instances_instance_protocols_ospf_area_List[i_routing_instances_instance_protocols_ospf_area] = routing_instances_instance_protocols_ospf_area_model
-            routing_instances_instance_protocols_ospf_area_List[i_routing_instances_instance_protocols_ospf_area] = routing_instances_instance_protocols_ospf_area_model
+			routing_instances_instance_protocols_ospf_area_List[i_routing_instances_instance_protocols_ospf_area] = routing_instances_instance_protocols_ospf_area_model
+			routing_instances_instance_protocols_ospf_area_List[i_routing_instances_instance_protocols_ospf_area] = routing_instances_instance_protocols_ospf_area_model
                 
         routing_instances_instance_protocols_ospf_area_interface_List := make([]Routing_instances_Instance_Protocols_Ospf_Area_Interface_Model, len(v_routing_instances_instance_protocols_ospf_area.Interface))
         
 		for i_routing_instances_instance_protocols_ospf_area_interface, v_routing_instances_instance_protocols_ospf_area_interface := range v_routing_instances_instance_protocols_ospf_area.Interface {
             var routing_instances_instance_protocols_ospf_area_interface_model Routing_instances_Instance_Protocols_Ospf_Area_Interface_Model
             routing_instances_instance_protocols_ospf_area_interface_model.Name = types.StringPointerValue(v_routing_instances_instance_protocols_ospf_area_interface.Name)
-            routing_instances_instance_protocols_ospf_area_interface_List[i_routing_instances_instance_protocols_ospf_area_interface] = routing_instances_instance_protocols_ospf_area_interface_model
+			routing_instances_instance_protocols_ospf_area_interface_List[i_routing_instances_instance_protocols_ospf_area_interface] = routing_instances_instance_protocols_ospf_area_interface_model
             routing_instances_instance_protocols_ospf_area_interface_model.Metric = types.StringPointerValue(v_routing_instances_instance_protocols_ospf_area_interface.Metric)
-            routing_instances_instance_protocols_ospf_area_interface_List[i_routing_instances_instance_protocols_ospf_area_interface] = routing_instances_instance_protocols_ospf_area_interface_model
+			routing_instances_instance_protocols_ospf_area_interface_List[i_routing_instances_instance_protocols_ospf_area_interface] = routing_instances_instance_protocols_ospf_area_interface_model
         }
         routing_instances_instance_protocols_ospf_area_model.Interface, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Protocols_Ospf_Area_Interface_Model{}.AttrTypes()}, routing_instances_instance_protocols_ospf_area_interface_List)
         routing_instances_instance_protocols_ospf_area_List[i_routing_instances_instance_protocols_ospf_area] = routing_instances_instance_protocols_ospf_area_model
@@ -4918,26 +4973,31 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         }
         routing_instances_instance_protocols_model.Ospf, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Protocols_Ospf_Model{}.AttrTypes()}, routing_instances_instance_protocols_ospf_List)
         routing_instances_instance_protocols_List[i_routing_instances_instance_protocols] = routing_instances_instance_protocols_model
-            routing_instances_instance_protocols_List[i_routing_instances_instance_protocols] = routing_instances_instance_protocols_model
+			routing_instances_instance_protocols_List[i_routing_instances_instance_protocols] = routing_instances_instance_protocols_model
                 
         routing_instances_instance_protocols_evpn_List := make([]Routing_instances_Instance_Protocols_Evpn_Model, len(v_routing_instances_instance_protocols.Evpn))
         
 		for i_routing_instances_instance_protocols_evpn, v_routing_instances_instance_protocols_evpn := range v_routing_instances_instance_protocols.Evpn {
             var routing_instances_instance_protocols_evpn_model Routing_instances_Instance_Protocols_Evpn_Model
-            routing_instances_instance_protocols_evpn_List[i_routing_instances_instance_protocols_evpn] = routing_instances_instance_protocols_evpn_model
+			routing_instances_instance_protocols_evpn_List[i_routing_instances_instance_protocols_evpn] = routing_instances_instance_protocols_evpn_model
                 
         routing_instances_instance_protocols_evpn_ip_prefix_routes_List := make([]Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model, len(v_routing_instances_instance_protocols_evpn.Ip_prefix_routes))
         
 		for i_routing_instances_instance_protocols_evpn_ip_prefix_routes, v_routing_instances_instance_protocols_evpn_ip_prefix_routes := range v_routing_instances_instance_protocols_evpn.Ip_prefix_routes {
             var routing_instances_instance_protocols_evpn_ip_prefix_routes_model Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model
             routing_instances_instance_protocols_evpn_ip_prefix_routes_model.Advertise = types.StringPointerValue(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Advertise)
-            routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
+			routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
             routing_instances_instance_protocols_evpn_ip_prefix_routes_model.Encapsulation = types.StringPointerValue(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Encapsulation)
-            routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
+			routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
             routing_instances_instance_protocols_evpn_ip_prefix_routes_model.Vni = types.StringPointerValue(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Vni)
-            routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
-            routing_instances_instance_protocols_evpn_ip_prefix_routes_model.Export = types.StringPointerValue(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export)
-            routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
+			routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
+			var var_routing_instances_instance_protocols_evpn_export []*string
+			if v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export != nil {
+				var_routing_instances_instance_protocols_evpn_export = make([]*string, len(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export))
+				copy(var_routing_instances_instance_protocols_evpn_export, v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export)
+			}
+			routing_instances_instance_protocols_evpn_ip_prefix_routes_model.Export, _ = types.ListValueFrom(ctx, types.StringType, var_routing_instances_instance_protocols_evpn_export)
+			routing_instances_instance_protocols_evpn_ip_prefix_routes_List[i_routing_instances_instance_protocols_evpn_ip_prefix_routes] = routing_instances_instance_protocols_evpn_ip_prefix_routes_model
         }
         routing_instances_instance_protocols_evpn_model.Ip_prefix_routes, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_instances_Instance_Protocols_Evpn_Ip_prefix_routes_Model{}.AttrTypes()}, routing_instances_instance_protocols_evpn_ip_prefix_routes_List)
         routing_instances_instance_protocols_evpn_List[i_routing_instances_instance_protocols_evpn] = routing_instances_instance_protocols_evpn_model
@@ -4961,16 +5021,21 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_routing_options_static, v_routing_options_static := range v_routing_options.Static {
             var routing_options_static_model Routing_options_Static_Model
-            routing_options_static_List[i_routing_options_static] = routing_options_static_model
+			routing_options_static_List[i_routing_options_static] = routing_options_static_model
                 
         routing_options_static_route_List := make([]Routing_options_Static_Route_Model, len(v_routing_options_static.Route))
         
 		for i_routing_options_static_route, v_routing_options_static_route := range v_routing_options_static.Route {
             var routing_options_static_route_model Routing_options_Static_Route_Model
             routing_options_static_route_model.Name = types.StringPointerValue(v_routing_options_static_route.Name)
-            routing_options_static_route_List[i_routing_options_static_route] = routing_options_static_route_model
-            routing_options_static_route_model.Next_hop = types.StringPointerValue(v_routing_options_static_route.Next_hop)
-            routing_options_static_route_List[i_routing_options_static_route] = routing_options_static_route_model
+			routing_options_static_route_List[i_routing_options_static_route] = routing_options_static_route_model
+			var var_routing_options_static_next_hop []*string
+			if v_routing_options_static_route.Next_hop != nil {
+				var_routing_options_static_next_hop = make([]*string, len(v_routing_options_static_route.Next_hop))
+				copy(var_routing_options_static_next_hop, v_routing_options_static_route.Next_hop)
+			}
+			routing_options_static_route_model.Next_hop, _ = types.ListValueFrom(ctx, types.StringType, var_routing_options_static_next_hop)
+			routing_options_static_route_List[i_routing_options_static_route] = routing_options_static_route_model
         }
         routing_options_static_model.Route, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_options_Static_Route_Model{}.AttrTypes()}, routing_options_static_route_List)
         routing_options_static_List[i_routing_options_static] = routing_options_static_model
@@ -4981,24 +5046,29 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_routing_options_forwarding_table, v_routing_options_forwarding_table := range v_routing_options.Forwarding_table {
             var routing_options_forwarding_table_model Routing_options_Forwarding_table_Model
-            routing_options_forwarding_table_model.Export = types.StringPointerValue(v_routing_options_forwarding_table.Export)
-            routing_options_forwarding_table_List[i_routing_options_forwarding_table] = routing_options_forwarding_table_model
+			var var_routing_options_export []*string
+			if v_routing_options_forwarding_table.Export != nil {
+				var_routing_options_export = make([]*string, len(v_routing_options_forwarding_table.Export))
+				copy(var_routing_options_export, v_routing_options_forwarding_table.Export)
+			}
+			routing_options_forwarding_table_model.Export, _ = types.ListValueFrom(ctx, types.StringType, var_routing_options_export)
+			routing_options_forwarding_table_List[i_routing_options_forwarding_table] = routing_options_forwarding_table_model
             routing_options_forwarding_table_model.Ecmp_fast_reroute = types.StringPointerValue(v_routing_options_forwarding_table.Ecmp_fast_reroute)
-            routing_options_forwarding_table_List[i_routing_options_forwarding_table] = routing_options_forwarding_table_model
-            routing_options_forwarding_table_List[i_routing_options_forwarding_table] = routing_options_forwarding_table_model
+			routing_options_forwarding_table_List[i_routing_options_forwarding_table] = routing_options_forwarding_table_model
+			routing_options_forwarding_table_List[i_routing_options_forwarding_table] = routing_options_forwarding_table_model
                 
         routing_options_forwarding_table_chained_composite_next_hop_List := make([]Routing_options_Forwarding_table_Chained_composite_next_hop_Model, len(v_routing_options_forwarding_table.Chained_composite_next_hop))
         
 		for i_routing_options_forwarding_table_chained_composite_next_hop, v_routing_options_forwarding_table_chained_composite_next_hop := range v_routing_options_forwarding_table.Chained_composite_next_hop {
             var routing_options_forwarding_table_chained_composite_next_hop_model Routing_options_Forwarding_table_Chained_composite_next_hop_Model
-            routing_options_forwarding_table_chained_composite_next_hop_List[i_routing_options_forwarding_table_chained_composite_next_hop] = routing_options_forwarding_table_chained_composite_next_hop_model
+			routing_options_forwarding_table_chained_composite_next_hop_List[i_routing_options_forwarding_table_chained_composite_next_hop] = routing_options_forwarding_table_chained_composite_next_hop_model
                 
         routing_options_forwarding_table_chained_composite_next_hop_ingress_List := make([]Routing_options_Forwarding_table_Chained_composite_next_hop_Ingress_Model, len(v_routing_options_forwarding_table_chained_composite_next_hop.Ingress))
         
 		for i_routing_options_forwarding_table_chained_composite_next_hop_ingress, v_routing_options_forwarding_table_chained_composite_next_hop_ingress := range v_routing_options_forwarding_table_chained_composite_next_hop.Ingress {
             var routing_options_forwarding_table_chained_composite_next_hop_ingress_model Routing_options_Forwarding_table_Chained_composite_next_hop_Ingress_Model
             routing_options_forwarding_table_chained_composite_next_hop_ingress_model.Evpn = types.StringPointerValue(v_routing_options_forwarding_table_chained_composite_next_hop_ingress.Evpn)
-            routing_options_forwarding_table_chained_composite_next_hop_ingress_List[i_routing_options_forwarding_table_chained_composite_next_hop_ingress] = routing_options_forwarding_table_chained_composite_next_hop_ingress_model
+			routing_options_forwarding_table_chained_composite_next_hop_ingress_List[i_routing_options_forwarding_table_chained_composite_next_hop_ingress] = routing_options_forwarding_table_chained_composite_next_hop_ingress_model
         }
         routing_options_forwarding_table_chained_composite_next_hop_model.Ingress, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Routing_options_Forwarding_table_Chained_composite_next_hop_Ingress_Model{}.AttrTypes()}, routing_options_forwarding_table_chained_composite_next_hop_ingress_List)
         routing_options_forwarding_table_chained_composite_next_hop_List[i_routing_options_forwarding_table_chained_composite_next_hop] = routing_options_forwarding_table_chained_composite_next_hop_model
@@ -5020,9 +5090,9 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_snmp_community, v_snmp_community := range v_snmp.Community {
             var snmp_community_model Snmp_Community_Model
             snmp_community_model.Name = types.StringPointerValue(v_snmp_community.Name)
-            snmp_community_List[i_snmp_community] = snmp_community_model
+			snmp_community_List[i_snmp_community] = snmp_community_model
             snmp_community_model.Authorization = types.StringPointerValue(v_snmp_community.Authorization)
-            snmp_community_List[i_snmp_community] = snmp_community_model
+			snmp_community_List[i_snmp_community] = snmp_community_model
         }
         snmp_model.Community, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Snmp_Community_Model{}.AttrTypes()}, snmp_community_List)
         snmp_List[i_snmp] = snmp_model
@@ -5038,7 +5108,7 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_switch_options_vtep_source_interface, v_switch_options_vtep_source_interface := range v_switch_options.Vtep_source_interface {
             var switch_options_vtep_source_interface_model Switch_options_Vtep_source_interface_Model
             switch_options_vtep_source_interface_model.Interface_name = types.StringPointerValue(v_switch_options_vtep_source_interface.Interface_name)
-            switch_options_vtep_source_interface_List[i_switch_options_vtep_source_interface] = switch_options_vtep_source_interface_model
+			switch_options_vtep_source_interface_List[i_switch_options_vtep_source_interface] = switch_options_vtep_source_interface_model
         }
         switch_options_model.Vtep_source_interface, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Switch_options_Vtep_source_interface_Model{}.AttrTypes()}, switch_options_vtep_source_interface_List)
         switch_options_List[i_switch_options] = switch_options_model
@@ -5047,7 +5117,7 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_switch_options_route_distinguisher, v_switch_options_route_distinguisher := range v_switch_options.Route_distinguisher {
             var switch_options_route_distinguisher_model Switch_options_Route_distinguisher_Model
             switch_options_route_distinguisher_model.Rd_type = types.StringPointerValue(v_switch_options_route_distinguisher.Rd_type)
-            switch_options_route_distinguisher_List[i_switch_options_route_distinguisher] = switch_options_route_distinguisher_model
+			switch_options_route_distinguisher_List[i_switch_options_route_distinguisher] = switch_options_route_distinguisher_model
         }
         switch_options_model.Route_distinguisher, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Switch_options_Route_distinguisher_Model{}.AttrTypes()}, switch_options_route_distinguisher_List)
         switch_options_List[i_switch_options] = switch_options_model
@@ -5056,8 +5126,8 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_switch_options_vrf_target, v_switch_options_vrf_target := range v_switch_options.Vrf_target {
             var switch_options_vrf_target_model Switch_options_Vrf_target_Model
             switch_options_vrf_target_model.Community = types.StringPointerValue(v_switch_options_vrf_target.Community)
-            switch_options_vrf_target_List[i_switch_options_vrf_target] = switch_options_vrf_target_model
-            switch_options_vrf_target_List[i_switch_options_vrf_target] = switch_options_vrf_target_model
+			switch_options_vrf_target_List[i_switch_options_vrf_target] = switch_options_vrf_target_model
+			switch_options_vrf_target_List[i_switch_options_vrf_target] = switch_options_vrf_target_model
                 
         switch_options_vrf_target_auto_List := make([]Switch_options_Vrf_target_Auto_Model, len(v_switch_options_vrf_target.Auto))
         
@@ -5077,26 +5147,26 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_system_login, v_system_login := range v_system.Login {
             var system_login_model System_Login_Model
-            system_login_List[i_system_login] = system_login_model
+			system_login_List[i_system_login] = system_login_model
                 
         system_login_user_List := make([]System_Login_User_Model, len(v_system_login.User))
         
 		for i_system_login_user, v_system_login_user := range v_system_login.User {
             var system_login_user_model System_Login_User_Model
             system_login_user_model.Name = types.StringPointerValue(v_system_login_user.Name)
-            system_login_user_List[i_system_login_user] = system_login_user_model
+			system_login_user_List[i_system_login_user] = system_login_user_model
             system_login_user_model.Uid = types.StringPointerValue(v_system_login_user.Uid)
-            system_login_user_List[i_system_login_user] = system_login_user_model
+			system_login_user_List[i_system_login_user] = system_login_user_model
             system_login_user_model.Class = types.StringPointerValue(v_system_login_user.Class)
-            system_login_user_List[i_system_login_user] = system_login_user_model
-            system_login_user_List[i_system_login_user] = system_login_user_model
+			system_login_user_List[i_system_login_user] = system_login_user_model
+			system_login_user_List[i_system_login_user] = system_login_user_model
                 
         system_login_user_authentication_List := make([]System_Login_User_Authentication_Model, len(v_system_login_user.Authentication))
         
 		for i_system_login_user_authentication, v_system_login_user_authentication := range v_system_login_user.Authentication {
             var system_login_user_authentication_model System_Login_User_Authentication_Model
             system_login_user_authentication_model.Encrypted_password = types.StringPointerValue(v_system_login_user_authentication.Encrypted_password)
-            system_login_user_authentication_List[i_system_login_user_authentication] = system_login_user_authentication_model
+			system_login_user_authentication_List[i_system_login_user_authentication] = system_login_user_authentication_model
         }
         system_login_user_model.Authentication, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Login_User_Authentication_Model{}.AttrTypes()}, system_login_user_authentication_List)
         system_login_user_List[i_system_login_user] = system_login_user_model
@@ -5104,7 +5174,7 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         system_login_model.User, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Login_User_Model{}.AttrTypes()}, system_login_user_List)
         system_login_List[i_system_login] = system_login_model
             system_login_model.Message = types.StringPointerValue(v_system_login.Message)
-            system_login_List[i_system_login] = system_login_model
+			system_login_List[i_system_login] = system_login_model
         }
         system_model.Login, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Login_Model{}.AttrTypes()}, system_login_List)
         system_List[i_system] = system_model
@@ -5113,7 +5183,7 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_system_root_authentication, v_system_root_authentication := range v_system.Root_authentication {
             var system_root_authentication_model System_Root_authentication_Model
             system_root_authentication_model.Encrypted_password = types.StringPointerValue(v_system_root_authentication.Encrypted_password)
-            system_root_authentication_List[i_system_root_authentication] = system_root_authentication_model
+			system_root_authentication_List[i_system_root_authentication] = system_root_authentication_model
         }
         system_model.Root_authentication, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Root_authentication_Model{}.AttrTypes()}, system_root_authentication_List)
         system_List[i_system] = system_model
@@ -5121,57 +5191,62 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_system_services, v_system_services := range v_system.Services {
             var system_services_model System_Services_Model
-            system_services_List[i_system_services] = system_services_model
+			system_services_List[i_system_services] = system_services_model
                 
         system_services_ssh_List := make([]System_Services_Ssh_Model, len(v_system_services.Ssh))
         
 		for i_system_services_ssh, v_system_services_ssh := range v_system_services.Ssh {
             var system_services_ssh_model System_Services_Ssh_Model
             system_services_ssh_model.Root_login = types.StringPointerValue(v_system_services_ssh.Root_login)
-            system_services_ssh_List[i_system_services_ssh] = system_services_ssh_model
+			system_services_ssh_List[i_system_services_ssh] = system_services_ssh_model
         }
         system_services_model.Ssh, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Ssh_Model{}.AttrTypes()}, system_services_ssh_List)
         system_services_List[i_system_services] = system_services_model
-            system_services_List[i_system_services] = system_services_model
+			system_services_List[i_system_services] = system_services_model
                 
         system_services_extension_service_List := make([]System_Services_Extension_service_Model, len(v_system_services.Extension_service))
         
 		for i_system_services_extension_service, v_system_services_extension_service := range v_system_services.Extension_service {
             var system_services_extension_service_model System_Services_Extension_service_Model
-            system_services_extension_service_List[i_system_services_extension_service] = system_services_extension_service_model
+			system_services_extension_service_List[i_system_services_extension_service] = system_services_extension_service_model
                 
         system_services_extension_service_request_response_List := make([]System_Services_Extension_service_Request_response_Model, len(v_system_services_extension_service.Request_response))
         
 		for i_system_services_extension_service_request_response, v_system_services_extension_service_request_response := range v_system_services_extension_service.Request_response {
             var system_services_extension_service_request_response_model System_Services_Extension_service_Request_response_Model
-            system_services_extension_service_request_response_List[i_system_services_extension_service_request_response] = system_services_extension_service_request_response_model
+			system_services_extension_service_request_response_List[i_system_services_extension_service_request_response] = system_services_extension_service_request_response_model
                 
         system_services_extension_service_request_response_grpc_List := make([]System_Services_Extension_service_Request_response_Grpc_Model, len(v_system_services_extension_service_request_response.Grpc))
         
 		for i_system_services_extension_service_request_response_grpc, v_system_services_extension_service_request_response_grpc := range v_system_services_extension_service_request_response.Grpc {
             var system_services_extension_service_request_response_grpc_model System_Services_Extension_service_Request_response_Grpc_Model
             system_services_extension_service_request_response_grpc_model.Max_connections = types.StringPointerValue(v_system_services_extension_service_request_response_grpc.Max_connections)
-            system_services_extension_service_request_response_grpc_List[i_system_services_extension_service_request_response_grpc] = system_services_extension_service_request_response_grpc_model
+			system_services_extension_service_request_response_grpc_List[i_system_services_extension_service_request_response_grpc] = system_services_extension_service_request_response_grpc_model
         }
         system_services_extension_service_request_response_model.Grpc, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Extension_service_Request_response_Grpc_Model{}.AttrTypes()}, system_services_extension_service_request_response_grpc_List)
         system_services_extension_service_request_response_List[i_system_services_extension_service_request_response] = system_services_extension_service_request_response_model
         }
         system_services_extension_service_model.Request_response, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Extension_service_Request_response_Model{}.AttrTypes()}, system_services_extension_service_request_response_List)
         system_services_extension_service_List[i_system_services_extension_service] = system_services_extension_service_model
-            system_services_extension_service_List[i_system_services_extension_service] = system_services_extension_service_model
+			system_services_extension_service_List[i_system_services_extension_service] = system_services_extension_service_model
                 
         system_services_extension_service_notification_List := make([]System_Services_Extension_service_Notification_Model, len(v_system_services_extension_service.Notification))
         
 		for i_system_services_extension_service_notification, v_system_services_extension_service_notification := range v_system_services_extension_service.Notification {
             var system_services_extension_service_notification_model System_Services_Extension_service_Notification_Model
-            system_services_extension_service_notification_List[i_system_services_extension_service_notification] = system_services_extension_service_notification_model
+			system_services_extension_service_notification_List[i_system_services_extension_service_notification] = system_services_extension_service_notification_model
                 
         system_services_extension_service_notification_allow_clients_List := make([]System_Services_Extension_service_Notification_Allow_clients_Model, len(v_system_services_extension_service_notification.Allow_clients))
         
 		for i_system_services_extension_service_notification_allow_clients, v_system_services_extension_service_notification_allow_clients := range v_system_services_extension_service_notification.Allow_clients {
             var system_services_extension_service_notification_allow_clients_model System_Services_Extension_service_Notification_Allow_clients_Model
-            system_services_extension_service_notification_allow_clients_model.Address = types.StringPointerValue(v_system_services_extension_service_notification_allow_clients.Address)
-            system_services_extension_service_notification_allow_clients_List[i_system_services_extension_service_notification_allow_clients] = system_services_extension_service_notification_allow_clients_model
+			var var_system_services_extension_service_notification_address []*string
+			if v_system_services_extension_service_notification_allow_clients.Address != nil {
+				var_system_services_extension_service_notification_address = make([]*string, len(v_system_services_extension_service_notification_allow_clients.Address))
+				copy(var_system_services_extension_service_notification_address, v_system_services_extension_service_notification_allow_clients.Address)
+			}
+			system_services_extension_service_notification_allow_clients_model.Address, _ = types.ListValueFrom(ctx, types.StringType, var_system_services_extension_service_notification_address)
+			system_services_extension_service_notification_allow_clients_List[i_system_services_extension_service_notification_allow_clients] = system_services_extension_service_notification_allow_clients_model
         }
         system_services_extension_service_notification_model.Allow_clients, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Extension_service_Notification_Allow_clients_Model{}.AttrTypes()}, system_services_extension_service_notification_allow_clients_List)
         system_services_extension_service_notification_List[i_system_services_extension_service_notification] = system_services_extension_service_notification_model
@@ -5181,13 +5256,13 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         }
         system_services_model.Extension_service, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Extension_service_Model{}.AttrTypes()}, system_services_extension_service_List)
         system_services_List[i_system_services] = system_services_model
-            system_services_List[i_system_services] = system_services_model
+			system_services_List[i_system_services] = system_services_model
                 
         system_services_netconf_List := make([]System_Services_Netconf_Model, len(v_system_services.Netconf))
         
 		for i_system_services_netconf, v_system_services_netconf := range v_system_services.Netconf {
             var system_services_netconf_model System_Services_Netconf_Model
-            system_services_netconf_List[i_system_services_netconf] = system_services_netconf_model
+			system_services_netconf_List[i_system_services_netconf] = system_services_netconf_model
                 
         system_services_netconf_ssh_List := make([]System_Services_Netconf_Ssh_Model, len(v_system_services_netconf.Ssh))
         
@@ -5196,25 +5271,25 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         }
         system_services_model.Netconf, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Netconf_Model{}.AttrTypes()}, system_services_netconf_List)
         system_services_List[i_system_services] = system_services_model
-            system_services_List[i_system_services] = system_services_model
+			system_services_List[i_system_services] = system_services_model
                 
         system_services_rest_List := make([]System_Services_Rest_Model, len(v_system_services.Rest))
         
 		for i_system_services_rest, v_system_services_rest := range v_system_services.Rest {
             var system_services_rest_model System_Services_Rest_Model
-            system_services_rest_List[i_system_services_rest] = system_services_rest_model
+			system_services_rest_List[i_system_services_rest] = system_services_rest_model
                 
         system_services_rest_http_List := make([]System_Services_Rest_Http_Model, len(v_system_services_rest.Http))
         
 		for i_system_services_rest_http, v_system_services_rest_http := range v_system_services_rest.Http {
             var system_services_rest_http_model System_Services_Rest_Http_Model
             system_services_rest_http_model.Port = types.StringPointerValue(v_system_services_rest_http.Port)
-            system_services_rest_http_List[i_system_services_rest_http] = system_services_rest_http_model
+			system_services_rest_http_List[i_system_services_rest_http] = system_services_rest_http_model
         }
         system_services_rest_model.Http, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Rest_Http_Model{}.AttrTypes()}, system_services_rest_http_List)
         system_services_rest_List[i_system_services_rest] = system_services_rest_model
             system_services_rest_model.Enable_explorer = types.StringPointerValue(v_system_services_rest.Enable_explorer)
-            system_services_rest_List[i_system_services_rest] = system_services_rest_model
+			system_services_rest_List[i_system_services_rest] = system_services_rest_model
         }
         system_services_model.Rest, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Services_Rest_Model{}.AttrTypes()}, system_services_rest_List)
         system_services_List[i_system_services] = system_services_model
@@ -5225,52 +5300,52 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_system_syslog, v_system_syslog := range v_system.Syslog {
             var system_syslog_model System_Syslog_Model
-            system_syslog_List[i_system_syslog] = system_syslog_model
+			system_syslog_List[i_system_syslog] = system_syslog_model
                 
         system_syslog_user_List := make([]System_Syslog_User_Model, len(v_system_syslog.User))
         
 		for i_system_syslog_user, v_system_syslog_user := range v_system_syslog.User {
             var system_syslog_user_model System_Syslog_User_Model
             system_syslog_user_model.Name = types.StringPointerValue(v_system_syslog_user.Name)
-            system_syslog_user_List[i_system_syslog_user] = system_syslog_user_model
-            system_syslog_user_List[i_system_syslog_user] = system_syslog_user_model
+			system_syslog_user_List[i_system_syslog_user] = system_syslog_user_model
+			system_syslog_user_List[i_system_syslog_user] = system_syslog_user_model
                 
         system_syslog_user_contents_List := make([]System_Syslog_User_Contents_Model, len(v_system_syslog_user.Contents))
         
 		for i_system_syslog_user_contents, v_system_syslog_user_contents := range v_system_syslog_user.Contents {
             var system_syslog_user_contents_model System_Syslog_User_Contents_Model
             system_syslog_user_contents_model.Name = types.StringPointerValue(v_system_syslog_user_contents.Name)
-            system_syslog_user_contents_List[i_system_syslog_user_contents] = system_syslog_user_contents_model
+			system_syslog_user_contents_List[i_system_syslog_user_contents] = system_syslog_user_contents_model
             system_syslog_user_contents_model.Emergency = types.StringPointerValue(v_system_syslog_user_contents.Emergency)
-            system_syslog_user_contents_List[i_system_syslog_user_contents] = system_syslog_user_contents_model
+			system_syslog_user_contents_List[i_system_syslog_user_contents] = system_syslog_user_contents_model
         }
         system_syslog_user_model.Contents, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Syslog_User_Contents_Model{}.AttrTypes()}, system_syslog_user_contents_List)
         system_syslog_user_List[i_system_syslog_user] = system_syslog_user_model
         }
         system_syslog_model.User, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Syslog_User_Model{}.AttrTypes()}, system_syslog_user_List)
         system_syslog_List[i_system_syslog] = system_syslog_model
-            system_syslog_List[i_system_syslog] = system_syslog_model
+			system_syslog_List[i_system_syslog] = system_syslog_model
                 
         system_syslog_file_List := make([]System_Syslog_File_Model, len(v_system_syslog.File))
         
 		for i_system_syslog_file, v_system_syslog_file := range v_system_syslog.File {
             var system_syslog_file_model System_Syslog_File_Model
             system_syslog_file_model.Name = types.StringPointerValue(v_system_syslog_file.Name)
-            system_syslog_file_List[i_system_syslog_file] = system_syslog_file_model
-            system_syslog_file_List[i_system_syslog_file] = system_syslog_file_model
+			system_syslog_file_List[i_system_syslog_file] = system_syslog_file_model
+			system_syslog_file_List[i_system_syslog_file] = system_syslog_file_model
                 
         system_syslog_file_contents_List := make([]System_Syslog_File_Contents_Model, len(v_system_syslog_file.Contents))
         
 		for i_system_syslog_file_contents, v_system_syslog_file_contents := range v_system_syslog_file.Contents {
             var system_syslog_file_contents_model System_Syslog_File_Contents_Model
             system_syslog_file_contents_model.Name = types.StringPointerValue(v_system_syslog_file_contents.Name)
-            system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
+			system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
             system_syslog_file_contents_model.Any = types.StringPointerValue(v_system_syslog_file_contents.Any)
-            system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
+			system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
             system_syslog_file_contents_model.Notice = types.StringPointerValue(v_system_syslog_file_contents.Notice)
-            system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
+			system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
             system_syslog_file_contents_model.Info = types.StringPointerValue(v_system_syslog_file_contents.Info)
-            system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
+			system_syslog_file_contents_List[i_system_syslog_file_contents] = system_syslog_file_contents_model
         }
         system_syslog_file_model.Contents, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Syslog_File_Contents_Model{}.AttrTypes()}, system_syslog_file_contents_List)
         system_syslog_file_List[i_system_syslog_file] = system_syslog_file_model
@@ -5284,24 +5359,29 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         
 		for i_system_extensions, v_system_extensions := range v_system.Extensions {
             var system_extensions_model System_Extensions_Model
-            system_extensions_List[i_system_extensions] = system_extensions_model
+			system_extensions_List[i_system_extensions] = system_extensions_model
                 
         system_extensions_providers_List := make([]System_Extensions_Providers_Model, len(v_system_extensions.Providers))
         
 		for i_system_extensions_providers, v_system_extensions_providers := range v_system_extensions.Providers {
             var system_extensions_providers_model System_Extensions_Providers_Model
             system_extensions_providers_model.Name = types.StringPointerValue(v_system_extensions_providers.Name)
-            system_extensions_providers_List[i_system_extensions_providers] = system_extensions_providers_model
-            system_extensions_providers_List[i_system_extensions_providers] = system_extensions_providers_model
+			system_extensions_providers_List[i_system_extensions_providers] = system_extensions_providers_model
+			system_extensions_providers_List[i_system_extensions_providers] = system_extensions_providers_model
                 
         system_extensions_providers_license_type_List := make([]System_Extensions_Providers_License_type_Model, len(v_system_extensions_providers.License_type))
         
 		for i_system_extensions_providers_license_type, v_system_extensions_providers_license_type := range v_system_extensions_providers.License_type {
             var system_extensions_providers_license_type_model System_Extensions_Providers_License_type_Model
             system_extensions_providers_license_type_model.Name = types.StringPointerValue(v_system_extensions_providers_license_type.Name)
-            system_extensions_providers_license_type_List[i_system_extensions_providers_license_type] = system_extensions_providers_license_type_model
-            system_extensions_providers_license_type_model.Deployment_scope = types.StringPointerValue(v_system_extensions_providers_license_type.Deployment_scope)
-            system_extensions_providers_license_type_List[i_system_extensions_providers_license_type] = system_extensions_providers_license_type_model
+			system_extensions_providers_license_type_List[i_system_extensions_providers_license_type] = system_extensions_providers_license_type_model
+			var var_system_extensions_providers_deployment_scope []*string
+			if v_system_extensions_providers_license_type.Deployment_scope != nil {
+				var_system_extensions_providers_deployment_scope = make([]*string, len(v_system_extensions_providers_license_type.Deployment_scope))
+				copy(var_system_extensions_providers_deployment_scope, v_system_extensions_providers_license_type.Deployment_scope)
+			}
+			system_extensions_providers_license_type_model.Deployment_scope, _ = types.ListValueFrom(ctx, types.StringType, var_system_extensions_providers_deployment_scope)
+			system_extensions_providers_license_type_List[i_system_extensions_providers_license_type] = system_extensions_providers_license_type_model
         }
         system_extensions_providers_model.License_type, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: System_Extensions_Providers_License_type_Model{}.AttrTypes()}, system_extensions_providers_license_type_List)
         system_extensions_providers_List[i_system_extensions_providers] = system_extensions_providers_model
@@ -5323,19 +5403,19 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
 		for i_vlans_vlan, v_vlans_vlan := range v_vlans.Vlan {
             var vlans_vlan_model Vlans_Vlan_Model
             vlans_vlan_model.Name = types.StringPointerValue(v_vlans_vlan.Name)
-            vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
+			vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
             vlans_vlan_model.Vlan_id = types.StringPointerValue(v_vlans_vlan.Vlan_id)
-            vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
+			vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
             vlans_vlan_model.L3_interface = types.StringPointerValue(v_vlans_vlan.L3_interface)
-            vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
-            vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
+			vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
+			vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
                 
         vlans_vlan_vxlan_List := make([]Vlans_Vlan_Vxlan_Model, len(v_vlans_vlan.Vxlan))
         
 		for i_vlans_vlan_vxlan, v_vlans_vlan_vxlan := range v_vlans_vlan.Vxlan {
             var vlans_vlan_vxlan_model Vlans_Vlan_Vxlan_Model
             vlans_vlan_vxlan_model.Vni = types.StringPointerValue(v_vlans_vlan_vxlan.Vni)
-            vlans_vlan_vxlan_List[i_vlans_vlan_vxlan] = vlans_vlan_vxlan_model
+			vlans_vlan_vxlan_List[i_vlans_vlan_vxlan] = vlans_vlan_vxlan_model
         }
         vlans_vlan_model.Vxlan, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Vlans_Vlan_Vxlan_Model{}.AttrTypes()}, vlans_vlan_vxlan_List)
         vlans_vlan_List[i_vlans_vlan] = vlans_vlan_model
@@ -5363,20 +5443,6 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
 	var config xml_Configuration
 	config.Groups.Name = plan.ResourceName.ValueStringPointer()
     
-	
-    var var_version []Version_Model
-    if plan.Version.IsNull() {
-        var_version = []Version_Model{}
-    }else {
-        resp.Diagnostics.Append(plan.Version.ElementsAs(ctx, &var_version, false)...)
-        if resp.Diagnostics.HasError() {
-            return
-        }
-    }
-    config.Groups.Version = make([]xml_Version, len(var_version))
-    
-    for i_version, v_version := range var_version {
-    }
 	
     var var_chassis []Chassis_Model
     if plan.Chassis.IsNull() {
@@ -5570,7 +5636,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
 	    config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan = make([]xml_Interfaces_Interface_Unit_Family_Ethernet_switching_Vlan, len(var_interfaces_interface_unit_family_ethernet_switching_vlan))
         
 		for i_interfaces_interface_unit_family_ethernet_switching_vlan, v_interfaces_interface_unit_family_ethernet_switching_vlan := range var_interfaces_interface_unit_family_ethernet_switching_vlan {
-            config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan[i_interfaces_interface_unit_family_ethernet_switching_vlan].Members = v_interfaces_interface_unit_family_ethernet_switching_vlan.Members.ValueStringPointer()
+			var var_interfaces_interface_unit_family_ethernet_switching_vlan_members []string
+			resp.Diagnostics.Append(v_interfaces_interface_unit_family_ethernet_switching_vlan.Members.ElementsAs(ctx, &var_interfaces_interface_unit_family_ethernet_switching_vlan_members, false)...)
+			for _, v_interfaces_interface_unit_family_ethernet_switching_vlan_members := range var_interfaces_interface_unit_family_ethernet_switching_vlan_members {
+				config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan[i_interfaces_interface_unit_family_ethernet_switching_vlan].Members = append(config.Groups.Interfaces[i_interfaces].Interface[i_interfaces_interface].Unit[i_interfaces_interface_unit].Family[i_interfaces_interface_unit_family].Ethernet_switching[i_interfaces_interface_unit_family_ethernet_switching].Vlan[i_interfaces_interface_unit_family_ethernet_switching_vlan].Members, &v_interfaces_interface_unit_family_ethernet_switching_vlan_members)
+			}
         }
         }
         }
@@ -5617,7 +5687,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
 	    config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From = make([]xml_Policy_options_Policy_statement_Term_From, len(var_policy_options_policy_statement_term_from))
         
 		for i_policy_options_policy_statement_term_from, v_policy_options_policy_statement_term_from := range var_policy_options_policy_statement_term_from {
-            config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From[i_policy_options_policy_statement_term_from].Protocol = v_policy_options_policy_statement_term_from.Protocol.ValueStringPointer()
+			var var_policy_options_policy_statement_term_from_protocol []string
+			resp.Diagnostics.Append(v_policy_options_policy_statement_term_from.Protocol.ElementsAs(ctx, &var_policy_options_policy_statement_term_from_protocol, false)...)
+			for _, v_policy_options_policy_statement_term_from_protocol := range var_policy_options_policy_statement_term_from_protocol {
+				config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From[i_policy_options_policy_statement_term_from].Protocol = append(config.Groups.Policy_options[i_policy_options].Policy_statement[i_policy_options_policy_statement].Term[i_policy_options_policy_statement_term].From[i_policy_options_policy_statement_term_from].Protocol, &v_policy_options_policy_statement_term_from_protocol)
+			}
             var var_policy_options_policy_statement_term_from_route_filter []Policy_options_Policy_statement_Term_From_Route_filter_Model
             resp.Diagnostics.Append(v_policy_options_policy_statement_term_from.Route_filter.ElementsAs(ctx, &var_policy_options_policy_statement_term_from_route_filter, false)...)
             if resp.Diagnostics.HasError() {
@@ -5684,7 +5758,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
         
 		for i_policy_options_community, v_policy_options_community := range var_policy_options_community {
             config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Name = v_policy_options_community.Name.ValueStringPointer()
-            config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Members = v_policy_options_community.Members.ValueStringPointer()
+			var var_policy_options_community_members []string
+			resp.Diagnostics.Append(v_policy_options_community.Members.ElementsAs(ctx, &var_policy_options_community_members, false)...)
+			for _, v_policy_options_community_members := range var_policy_options_community_members {
+				config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Members = append(config.Groups.Policy_options[i_policy_options].Community[i_policy_options_community].Members, &v_policy_options_community_members)
+			}
         }
     }
 	
@@ -5730,7 +5808,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
         }
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Local_address = v_protocols_bgp_group.Local_address.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Mtu_discovery = v_protocols_bgp_group.Mtu_discovery.ValueStringPointer()
-            config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Import = v_protocols_bgp_group.Import.ValueStringPointer()
+			var var_protocols_bgp_group_import []string
+			resp.Diagnostics.Append(v_protocols_bgp_group.Import.ElementsAs(ctx, &var_protocols_bgp_group_import, false)...)
+			for _, v_protocols_bgp_group_import := range var_protocols_bgp_group_import {
+				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Import = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Import, &v_protocols_bgp_group_import)
+			}
             var var_protocols_bgp_group_family []Protocols_Bgp_Group_Family_Model
             resp.Diagnostics.Append(v_protocols_bgp_group.Family.ElementsAs(ctx, &var_protocols_bgp_group_family, false)...)
             if resp.Diagnostics.HasError() {
@@ -5777,7 +5859,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
         }
         }
         }
-            config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Export = v_protocols_bgp_group.Export.ValueStringPointer()
+			var var_protocols_bgp_group_export []string
+			resp.Diagnostics.Append(v_protocols_bgp_group.Export.ElementsAs(ctx, &var_protocols_bgp_group_export, false)...)
+			for _, v_protocols_bgp_group_export := range var_protocols_bgp_group_export {
+				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Export = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Export, &v_protocols_bgp_group_export)
+			}
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Vpn_apply_export = v_protocols_bgp_group.Vpn_apply_export.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Cluster = v_protocols_bgp_group.Cluster.ValueStringPointer()
             var var_protocols_bgp_group_local_as []Protocols_Bgp_Group_Local_as_Model
@@ -5811,7 +5897,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Minimum_interval = v_protocols_bgp_group_bfd_liveness_detection.Minimum_interval.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Multiplier = v_protocols_bgp_group_bfd_liveness_detection.Multiplier.ValueStringPointer()
         }
-            config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow = v_protocols_bgp_group.Allow.ValueStringPointer()
+			var var_protocols_bgp_group_allow []string
+			resp.Diagnostics.Append(v_protocols_bgp_group.Allow.ElementsAs(ctx, &var_protocols_bgp_group_allow, false)...)
+			for _, v_protocols_bgp_group_allow := range var_protocols_bgp_group_allow {
+				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow, &v_protocols_bgp_group_allow)
+			}
             var var_protocols_bgp_group_neighbor []Protocols_Bgp_Group_Neighbor_Model
             resp.Diagnostics.Append(v_protocols_bgp_group.Neighbor.ElementsAs(ctx, &var_protocols_bgp_group_neighbor, false)...)
             if resp.Diagnostics.HasError() {
@@ -5837,7 +5927,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Encapsulation = v_protocols_evpn.Encapsulation.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Multicast_mode = v_protocols_evpn.Multicast_mode.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Default_gateway = v_protocols_evpn.Default_gateway.ValueStringPointer()
-            config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Extended_vni_list = v_protocols_evpn.Extended_vni_list.ValueStringPointer()
+			var var_protocols_evpn_extended_vni_list []string
+			resp.Diagnostics.Append(v_protocols_evpn.Extended_vni_list.ElementsAs(ctx, &var_protocols_evpn_extended_vni_list, false)...)
+			for _, v_protocols_evpn_extended_vni_list := range var_protocols_evpn_extended_vni_list {
+				config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Extended_vni_list = append(config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].Extended_vni_list, &v_protocols_evpn_extended_vni_list)
+			}
             config.Groups.Protocols[i_protocols].Evpn[i_protocols_evpn].No_core_isolation = v_protocols_evpn.No_core_isolation.ValueStringPointer()
         }
         var var_protocols_lldp []Protocols_Lldp_Model
@@ -5971,7 +6065,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
 	    config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf = make([]xml_Routing_instances_Instance_Protocols_Ospf, len(var_routing_instances_instance_protocols_ospf))
         
 		for i_routing_instances_instance_protocols_ospf, v_routing_instances_instance_protocols_ospf := range var_routing_instances_instance_protocols_ospf {
-            config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf[i_routing_instances_instance_protocols_ospf].Export = v_routing_instances_instance_protocols_ospf.Export.ValueStringPointer()
+			var var_routing_instances_instance_protocols_ospf_export []string
+			resp.Diagnostics.Append(v_routing_instances_instance_protocols_ospf.Export.ElementsAs(ctx, &var_routing_instances_instance_protocols_ospf_export, false)...)
+			for _, v_routing_instances_instance_protocols_ospf_export := range var_routing_instances_instance_protocols_ospf_export {
+				config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf[i_routing_instances_instance_protocols_ospf].Export = append(config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Ospf[i_routing_instances_instance_protocols_ospf].Export, &v_routing_instances_instance_protocols_ospf_export)
+			}
             var var_routing_instances_instance_protocols_ospf_area []Routing_instances_Instance_Protocols_Ospf_Area_Model
             resp.Diagnostics.Append(v_routing_instances_instance_protocols_ospf.Area.ElementsAs(ctx, &var_routing_instances_instance_protocols_ospf_area, false)...)
             if resp.Diagnostics.HasError() {
@@ -6013,7 +6111,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
             config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Advertise = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Advertise.ValueStringPointer()
             config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Encapsulation = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Encapsulation.ValueStringPointer()
             config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Vni = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Vni.ValueStringPointer()
-            config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Export = v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export.ValueStringPointer()
+			var var_routing_instances_instance_protocols_evpn_ip_prefix_routes_export []string
+			resp.Diagnostics.Append(v_routing_instances_instance_protocols_evpn_ip_prefix_routes.Export.ElementsAs(ctx, &var_routing_instances_instance_protocols_evpn_ip_prefix_routes_export, false)...)
+			for _, v_routing_instances_instance_protocols_evpn_ip_prefix_routes_export := range var_routing_instances_instance_protocols_evpn_ip_prefix_routes_export {
+				config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Export = append(config.Groups.Routing_instances[i_routing_instances].Instance[i_routing_instances_instance].Protocols[i_routing_instances_instance_protocols].Evpn[i_routing_instances_instance_protocols_evpn].Ip_prefix_routes[i_routing_instances_instance_protocols_evpn_ip_prefix_routes].Export, &v_routing_instances_instance_protocols_evpn_ip_prefix_routes_export)
+			}
         }
         }
         }
@@ -6049,7 +6151,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
         
 		for i_routing_options_static_route, v_routing_options_static_route := range var_routing_options_static_route {
             config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Name = v_routing_options_static_route.Name.ValueStringPointer()
-            config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Next_hop = v_routing_options_static_route.Next_hop.ValueStringPointer()
+			var var_routing_options_static_route_next_hop []string
+			resp.Diagnostics.Append(v_routing_options_static_route.Next_hop.ElementsAs(ctx, &var_routing_options_static_route_next_hop, false)...)
+			for _, v_routing_options_static_route_next_hop := range var_routing_options_static_route_next_hop {
+				config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Next_hop = append(config.Groups.Routing_options[i_routing_options].Static[i_routing_options_static].Route[i_routing_options_static_route].Next_hop, &v_routing_options_static_route_next_hop)
+			}
         }
         }
         config.Groups.Routing_options[i_routing_options].Router_id = v_routing_options.Router_id.ValueStringPointer()
@@ -6061,7 +6167,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
 	    config.Groups.Routing_options[i_routing_options].Forwarding_table = make([]xml_Routing_options_Forwarding_table, len(var_routing_options_forwarding_table))
         
 		for i_routing_options_forwarding_table, v_routing_options_forwarding_table := range var_routing_options_forwarding_table {
-            config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Export = v_routing_options_forwarding_table.Export.ValueStringPointer()
+			var var_routing_options_forwarding_table_export []string
+			resp.Diagnostics.Append(v_routing_options_forwarding_table.Export.ElementsAs(ctx, &var_routing_options_forwarding_table_export, false)...)
+			for _, v_routing_options_forwarding_table_export := range var_routing_options_forwarding_table_export {
+				config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Export = append(config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Export, &v_routing_options_forwarding_table_export)
+			}
             config.Groups.Routing_options[i_routing_options].Forwarding_table[i_routing_options_forwarding_table].Ecmp_fast_reroute = v_routing_options_forwarding_table.Ecmp_fast_reroute.ValueStringPointer()
             var var_routing_options_forwarding_table_chained_composite_next_hop []Routing_options_Forwarding_table_Chained_composite_next_hop_Model
             resp.Diagnostics.Append(v_routing_options_forwarding_table.Chained_composite_next_hop.ElementsAs(ctx, &var_routing_options_forwarding_table_chained_composite_next_hop, false)...)
@@ -6279,7 +6389,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
 	    config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients = make([]xml_System_Services_Extension_service_Notification_Allow_clients, len(var_system_services_extension_service_notification_allow_clients))
         
 		for i_system_services_extension_service_notification_allow_clients, v_system_services_extension_service_notification_allow_clients := range var_system_services_extension_service_notification_allow_clients {
-            config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients[i_system_services_extension_service_notification_allow_clients].Address = v_system_services_extension_service_notification_allow_clients.Address.ValueStringPointer()
+			var var_system_services_extension_service_notification_allow_clients_address []string
+			resp.Diagnostics.Append(v_system_services_extension_service_notification_allow_clients.Address.ElementsAs(ctx, &var_system_services_extension_service_notification_allow_clients_address, false)...)
+			for _, v_system_services_extension_service_notification_allow_clients_address := range var_system_services_extension_service_notification_allow_clients_address {
+				config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients[i_system_services_extension_service_notification_allow_clients].Address = append(config.Groups.System[i_system].Services[i_system_services].Extension_service[i_system_services_extension_service].Notification[i_system_services_extension_service_notification].Allow_clients[i_system_services_extension_service_notification_allow_clients].Address, &v_system_services_extension_service_notification_allow_clients_address)
+			}
         }
         }
         }
@@ -6399,7 +6513,11 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
         
 		for i_system_extensions_providers_license_type, v_system_extensions_providers_license_type := range var_system_extensions_providers_license_type {
             config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Name = v_system_extensions_providers_license_type.Name.ValueStringPointer()
-            config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Deployment_scope = v_system_extensions_providers_license_type.Deployment_scope.ValueStringPointer()
+			var var_system_extensions_providers_license_type_deployment_scope []string
+			resp.Diagnostics.Append(v_system_extensions_providers_license_type.Deployment_scope.ElementsAs(ctx, &var_system_extensions_providers_license_type_deployment_scope, false)...)
+			for _, v_system_extensions_providers_license_type_deployment_scope := range var_system_extensions_providers_license_type_deployment_scope {
+				config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Deployment_scope = append(config.Groups.System[i_system].Extensions[i_system_extensions].Providers[i_system_extensions_providers].License_type[i_system_extensions_providers_license_type].Deployment_scope, &v_system_extensions_providers_license_type_deployment_scope)
+			}
         }
         }
         }
