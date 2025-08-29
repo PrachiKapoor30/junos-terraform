@@ -279,7 +279,6 @@ type xml_Protocols_Bgp_Group struct {
 	Local_as []xml_Protocols_Bgp_Group_Local_as `xml:"local-as,omitempty"`
 	Multipath []xml_Protocols_Bgp_Group_Multipath `xml:"multipath,omitempty"`
 	Bfd_liveness_detection []xml_Protocols_Bgp_Group_Bfd_liveness_detection `xml:"bfd-liveness-detection,omitempty"`
-	Allow         []*string  `xml:"allow,omitempty"`
 	Neighbor []xml_Protocols_Bgp_Group_Neighbor `xml:"neighbor,omitempty"`
 }
 type xml_Protocols_Lldp_Interface struct {
@@ -1774,7 +1773,6 @@ type Protocols_Bgp_Group_Model struct {
 	Local_as	types.List `tfsdk:"local_as"`
 	Multipath	types.List `tfsdk:"multipath"`
 	Bfd_liveness_detection	types.List `tfsdk:"bfd_liveness_detection"`
-	Allow	types.List `tfsdk:"allow"`
 	Neighbor	types.List `tfsdk:"neighbor"`
 }
 func (o Protocols_Bgp_Group_Model) AttrTypes() map[string]attr.Type {
@@ -1792,7 +1790,6 @@ func (o Protocols_Bgp_Group_Model) AttrTypes() map[string]attr.Type {
 	    "local_as": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Local_as_Model{}.AttrTypes()}},
 	    "multipath": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Multipath_Model{}.AttrTypes()}},
 	    "bfd_liveness_detection": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Bfd_liveness_detection_Model{}.AttrTypes()}},
-		"allow": 	types.ListType{ElemType: types.StringType},
 	    "neighbor": 	types.ListType{ElemType: types.ObjectType{AttrTypes: Protocols_Bgp_Group_Neighbor_Model{}.AttrTypes()}},
 	}
 }
@@ -1862,11 +1859,6 @@ func (o Protocols_Bgp_Group_Model) Attributes() map[string]schema.Attribute {
 			    Attributes: Protocols_Bgp_Group_Bfd_liveness_detection_Model{}.Attributes(),
 	        },
         },
-		"allow": schema.ListAttribute{
-			ElementType:         types.StringType,
-			Optional:            true,
-			MarkdownDescription: "xpath is `config.Groups.Allow.Group`",
-		},
 	    "neighbor": schema.ListNestedAttribute{
 		    Optional: true,
 		    NestedObject: schema.NestedAttributeObject{
@@ -3630,11 +3622,6 @@ func (r *resource_Apply_Groups) Create(ctx context.Context, req resource.CreateR
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Minimum_interval = v_protocols_bgp_group_bfd_liveness_detection.Minimum_interval.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Multiplier = v_protocols_bgp_group_bfd_liveness_detection.Multiplier.ValueStringPointer()
         }
-			var var_protocols_bgp_group_allow []string
-			resp.Diagnostics.Append(v_protocols_bgp_group.Allow.ElementsAs(ctx, &var_protocols_bgp_group_allow, false)...)
-			for _, v_protocols_bgp_group_allow := range var_protocols_bgp_group_allow {
-				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow, &v_protocols_bgp_group_allow)
-			}
             var var_protocols_bgp_group_neighbor []Protocols_Bgp_Group_Neighbor_Model
             resp.Diagnostics.Append(v_protocols_bgp_group.Neighbor.ElementsAs(ctx, &var_protocols_bgp_group_neighbor, false)...)
             if resp.Diagnostics.HasError() {
@@ -4772,13 +4759,6 @@ func (r *resource_Apply_Groups) Read(ctx context.Context, req resource.ReadReque
         }
         protocols_bgp_group_model.Bfd_liveness_detection, _ = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: Protocols_Bgp_Group_Bfd_liveness_detection_Model{}.AttrTypes()}, protocols_bgp_group_bfd_liveness_detection_List)
         protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
-			var var_protocols_bgp_allow []*string
-			if v_protocols_bgp_group.Allow != nil {
-				var_protocols_bgp_allow = make([]*string, len(v_protocols_bgp_group.Allow))
-				copy(var_protocols_bgp_allow, v_protocols_bgp_group.Allow)
-			}
-			protocols_bgp_group_model.Allow, _ = types.ListValueFrom(ctx, types.StringType, var_protocols_bgp_allow)
-			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
 			protocols_bgp_group_List[i_protocols_bgp_group] = protocols_bgp_group_model
                 
         protocols_bgp_group_neighbor_List := make([]Protocols_Bgp_Group_Neighbor_Model, len(v_protocols_bgp_group.Neighbor))
@@ -5897,11 +5877,6 @@ func (r *resource_Apply_Groups) Update(ctx context.Context, req resource.UpdateR
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Minimum_interval = v_protocols_bgp_group_bfd_liveness_detection.Minimum_interval.ValueStringPointer()
             config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Bfd_liveness_detection[i_protocols_bgp_group_bfd_liveness_detection].Multiplier = v_protocols_bgp_group_bfd_liveness_detection.Multiplier.ValueStringPointer()
         }
-			var var_protocols_bgp_group_allow []string
-			resp.Diagnostics.Append(v_protocols_bgp_group.Allow.ElementsAs(ctx, &var_protocols_bgp_group_allow, false)...)
-			for _, v_protocols_bgp_group_allow := range var_protocols_bgp_group_allow {
-				config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow = append(config.Groups.Protocols[i_protocols].Bgp[i_protocols_bgp].Group[i_protocols_bgp_group].Allow, &v_protocols_bgp_group_allow)
-			}
             var var_protocols_bgp_group_neighbor []Protocols_Bgp_Group_Neighbor_Model
             resp.Diagnostics.Append(v_protocols_bgp_group.Neighbor.ElementsAs(ctx, &var_protocols_bgp_group_neighbor, false)...)
             if resp.Diagnostics.HasError() {

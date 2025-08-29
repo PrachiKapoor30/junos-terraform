@@ -1,23 +1,197 @@
+
+
 terraform {
   required_providers {
-    junos-vqfx = {
-      source = "junos-vqfx"
+    junos-qfx = {
+      source = "junos-qfx"
     }
   }
 }
 
-provider "junos-vqfx" {
-    host = "10.52.53.119"
-    port = 22
-    username = "regress"
-    password = "MaRtInI"
-    sshkey = ""
-    alias = "dc2-spine1"
+provider "junos-qfx" {
+  host     = ""
+  port     = 22
+  username = ""
+  password = ""
+  sshkey   = ""
+  alias    = "dc2_spine1"
 }
 
-resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
-  resource_name = "JTAF_dc2-spine1"
-  provider = junos-vqfx.dc2-spine1
+resource "junos-qfx-base-config" "base-config" {
+  resource_name = "base-config"
+  provider = junos-qfx.dc2_spine1
+  system = [
+    {
+      host_name = "dc2-spine1"
+      root_authentication = [
+        {
+          encrypted_password = "$1$DbZ1Q3pj$s48cZytjsmSJRUJAf4LdM."
+        }
+      ]
+      login = [
+        {
+          message = "***********************************************************************\nThis system is restricted to __________, authorized users for legitimate\nbusiness purposes only. All activity on the system will be logged and\nis subject to monitoring. Unauthorized access, use or modification\nof computers, data therein or data in transit to or from the computers\nis a violation of state and federal laws. Unauthorized activity will\nbe reported to the law enforcement for investigation and possible\nprosecution. __________ reserves the right to investigate, refer for\nprosecution and pursue monetary damages in civil actions in the event\nof unauthorized access.\n***********************************************************************\n"
+          user = [
+            {
+              name = "jcluser"
+              uid = 2000
+              class = "super-user"
+              authentication = [
+                {
+                  encrypted_password = "$1$a31gJmWG$h9ohikT1ajySf/tVH.gmv1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      services = [
+        {
+          ssh = [
+            {
+              root_login = "allow"
+            }
+          ]
+          extension_service = [
+            {
+              request_response = [
+                {
+                  grpc = [
+                    {
+                      undocumented = [
+                        {
+                          clear_text = [
+                            {
+                              address = "0.0.0.0"
+                              port = 32767
+                            }
+                          ]
+                        },
+                        {
+                          skip_authentication = ""
+                        }
+                      ]
+                      max_connections = 30
+                    }
+                  ]
+                }
+              ]
+              notification = [
+                {
+                  allow_clients = [
+                    {
+                      address = [
+                        "0.0.0.0/0"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+          netconf = [
+            {
+              ssh = [
+                {
+
+                }
+              ]
+            }
+          ]
+          rest = [
+            {
+              http = [
+                {
+                  port = 3000
+                }
+              ]
+              enable_explorer = ""
+            }
+          ]
+        }
+      ]
+      syslog = [
+        {
+          user = [
+            {
+              name = "*"
+              contents = [
+                {
+                  name = "any"
+                  emergency = ""
+                }
+              ]
+            }
+          ]
+          file = [
+            {
+              name = "messages"
+              contents = [
+                {
+                  name = "any"
+                  notice = ""
+                },
+                {
+                  name = "authorization"
+                  info = ""
+                }
+              ]
+            },
+            {
+              name = "interactive-commands"
+              contents = [
+                {
+                  name = "interactive-commands"
+                  any = ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      extensions = [
+        {
+          providers = [
+            {
+              name = "juniper"
+              license_type = [
+                {
+                  name = "juniper"
+                  deployment_scope = [
+                    "commercial"
+                  ]
+                }
+              ]
+            },
+            {
+              name = "chef"
+              license_type = [
+                {
+                  name = "juniper"
+                  deployment_scope = [
+                    "commercial"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  chassis = [
+    {
+      aggregated_devices = [
+        {
+          ethernet = [
+            {
+              device_count = 24
+            }
+          ]
+        }
+      ]
+    }
+  ]
   interfaces = [
     {
       interface = [
@@ -163,7 +337,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
                     {
                       vlan = [
                         {
-                          members = 1002
+                          members = [
+                            1002
+                          ]
                         }
                       ]
                     }
@@ -201,7 +377,53 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
                     {
                       vlan = [
                         {
-                          members = 1002
+                          members = [
+                            1002
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name = "em0"
+          unit = [
+            {
+              name = 0
+              description = "*** management ***"
+              family = [
+                {
+                  inet = [
+                    {
+                      address = [
+                        {
+                          name = "100.123.24.8/16"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name = "em1"
+          unit = [
+            {
+              name = 0
+              description = "*** to pfe ***"
+              family = [
+                {
+                  inet = [
+                    {
+                      address = [
+                        {
+                          name = "169.254.0.2/24"
                         }
                       ]
                     }
@@ -308,7 +530,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
           route = [
             {
               name = "0.0.0.0/0"
-              next_hop = "100.123.0.1"
+              next_hop = [
+                "100.123.0.1"
+              ]
             }
           ]
         }
@@ -316,7 +540,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
       router_id = "10.30.100.8"
       forwarding_table = [
         {
-          export = "PFE-LB"
+          export = [
+            "PFE-LB"
+          ]
           ecmp_fast_reroute = ""
           chained_composite_next_hop = [
             {
@@ -427,8 +653,12 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "IPCLOS_eBGP"
               type = "external"
               mtu_discovery = ""
-              import = "IPCLOS_BGP_IMP"
-              export = "IPCLOS_BGP_EXP"
+              import = [
+                "IPCLOS_BGP_IMP"
+              ]
+              export = [
+                "IPCLOS_BGP_EXP"
+              ]
               vpn_apply_export = ""
               local_as = [
                 {
@@ -467,7 +697,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
           encapsulation = "vxlan"
           multicast_mode = "ingress-replication"
           default_gateway = "do-not-advertise"
-          extended_vni_list = "all"
+          extended_vni_list = [
+            "all"
+          ]
           no_core_isolation = ""
         }
       ]
@@ -501,7 +733,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "fm_direct"
               from = [
                 {
-                  protocol = "direct"
+                  protocol = [
+                    "direct"
+                  ]
                 }
               ]
               then = [
@@ -514,7 +748,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "fm_static"
               from = [
                 {
-                  protocol = "static"
+                  protocol = [
+                    "static"
+                  ]
                 }
               ]
               then = [
@@ -527,12 +763,10 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "fm_v4_default"
               from = [
                 {
-                  protocol = "evpn"
-                },
-                {
-                  protocol = "ospf"
-                },
-                {
+                  protocol = [
+                    "evpn",
+                    "ospf"
+                  ]
                   route_filter = [
                     {
                       address = "0.0.0.0/0"
@@ -551,7 +785,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "fm_v4_host"
               from = [
                 {
-                  protocol = "evpn"
+                  protocol = [
+                    "evpn"
+                  ]
                   route_filter = [
                     {
                       address = "0.0.0.0/0"
@@ -570,7 +806,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "fm_v6_host"
               from = [
                 {
-                  protocol = "evpn"
+                  protocol = [
+                    "evpn"
+                  ]
                   route_filter = [
                     {
                       address = "0::0/0"
@@ -594,10 +832,10 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "loopback"
               from = [
                 {
-                  protocol = "direct"
-                },
-                {
-                  protocol = "bgp"
+                  protocol = [
+                    "direct",
+                    "bgp"
+                  ]
                 }
               ]
               then = [
@@ -629,10 +867,10 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = "loopback"
               from = [
                 {
-                  protocol = "bgp"
-                },
-                {
-                  protocol = "direct"
+                  protocol = [
+                    "bgp",
+                    "direct"
+                  ]
                 }
               ]
               then = [
@@ -670,7 +908,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
               name = 10
               from = [
                 {
-                  protocol = "evpn"
+                  protocol = [
+                    "evpn"
+                  ]
                   route_filter = [
                     {
                       address = "10.1.2.0/24"
@@ -699,7 +939,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
       community = [
         {
           name = "dc2-spine1"
-          members = "65520:1"
+          members = [
+            "65520:1"
+          ]
         }
       ]
     }
@@ -752,7 +994,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
             {
               ospf = [
                 {
-                  export = "to-ospf"
+                  export = [
+                    "to-ospf"
+                  ]
                   area = [
                     {
                       name = "0.0.0.0"
@@ -777,7 +1021,9 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
                       advertise = "direct-nexthop"
                       encapsulation = "vxlan"
                       vni = 10001
-                      export = "EVPN_T5_EXPORT"
+                      export = [
+                        "EVPN_T5_EXPORT"
+                      ]
                     }
                   ]
                 }
@@ -829,3 +1075,4 @@ resource "junos-vqfx_Apply_Groups" "dc2-spine1" {
     }
   ]
 }
+
