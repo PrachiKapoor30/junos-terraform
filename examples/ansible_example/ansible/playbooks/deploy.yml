@@ -1,0 +1,9 @@
+---
+- name: Deploy interfaces to QFX device
+  hosts: qfx
+  gather_facts: false
+  vars:
+    config_file: /home/jcluser/junos-terraform/examples/evpn-vxlan-dc/dc1/dc1-leaf1.xml
+  roles:
+    - role: qfx_junos_role
+

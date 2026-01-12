@@ -1,0 +1,21 @@
+<configuration>
+  <interfaces>
+  {% for intf in interfaces %}
+    <interface>
+      <name>{{ intf.name }}</name>
+      <description>{{ intf.description }}</description>
+      <unit>
+        <name>0</name>
+        <family>
+          <inet>
+            <address>
+              <name>{{ intf.ip }}</name>
+            </address>
+          </inet>
+        </family>
+      </unit>
+    </interface>
+  {% endfor %}
+  </interfaces>
+</configuration>
+

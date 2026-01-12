@@ -1,0 +1,8 @@
+---
+- name: Push configuration to QFX
+  junipernetworks.junos.junos_config:
+    src: "{{ config_file }}"
+    src_format: xml
+    update: merge
+    check_commit: yes
+
