@@ -1,9 +1,11 @@
 ---
 - name: Deploy interfaces to QFX device
   hosts: qfx
+  connection: ansible.netcommon.netconf
   gather_facts: false
   vars:
     config_file: /home/jcluser/junos-terraform/examples/evpn-vxlan-dc/dc1/dc1-leaf1.xml
+    ansible_python_interpreter: /home/jcluser/venv_ansible/bin/python3
   roles:
     - role: qfx_junos_role
 
