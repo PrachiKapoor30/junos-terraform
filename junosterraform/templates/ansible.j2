@@ -59,7 +59,7 @@
 			{%- set indexvar = 'i_{0:d}'.format(level) -%}    
 
 {%- if level>1 -%}
-{{'\n'+' '*4*level}}{{'{%-'}} if {{ pathvar + '.' + path2variable(preparename(ele.name)) }} is defined {{'%}'}}
+{{'\n'+' '*4*level}}{{'{%-'}} if {{ pathvar + '.' + path2variable(preparename(ele.name)) }} is defined and ({{ pathvar + '.' + path2variable(preparename(ele.name)) }} is not mapping or {{ pathvar + '.' + path2variable(preparename(ele.name)) }}|length > 0) and ({{ pathvar + '.' + path2variable(preparename(ele.name)) }} is not sequence or {{ pathvar + '.' + path2variable(preparename(ele.name)) }} is string or {{ pathvar + '.' + path2variable(preparename(ele.name)) }}|length > 0) {{'%}'}}
 {%- endif -%}
 {#{% if ele.type != "leaf-list" %}#}
 {{'\n'+' '*4*level}}<{{ele.name}}>
@@ -69,7 +69,7 @@
 		{%- else -%}	
 
 {%- if level>1 -%}
-{{'\n'+' '*4*level}}{{'{%-'}} if {{ pathvar + '.' + path2variable(preparename(ele.name)) }} is defined {{'%}'}}
+{{'\n'+' '*4*level}}{{'{%-'}} if {{ pathvar + '.' + path2variable(preparename(ele.name)) }} is defined and ({{ pathvar + '.' + path2variable(preparename(ele.name)) }} is not mapping or {{ pathvar + '.' + path2variable(preparename(ele.name)) }}|length > 0) and ({{ pathvar + '.' + path2variable(preparename(ele.name)) }} is not sequence or {{ pathvar + '.' + path2variable(preparename(ele.name)) }} is string or {{ pathvar + '.' + path2variable(preparename(ele.name)) }}|length > 0) {{'%}'}}
 {%- endif -%}
 {% if ele.type != "leaf-list" %}
 {{'\n'+' '*4*level}}<{{ele.name}}>
