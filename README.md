@@ -290,6 +290,7 @@ jtaf-yang2ansible -p examples/yang/18.2/18.2R3/common examples/yang/18.2/18.2R3/
 Notes:
 - If supplying multiple XML configs they must be for the same device type.
 - Output directory: ansible-provider-junos-<type>/ containing roles/<type>_role/ (tasks/templates), jtaf-playbook.yml (connection: local), host_vars/, group_vars/, configs/, trimmed_schema.json.
+- Merge filters are generated both at ansible-provider-junos-<type>/filter_plugins/ and roles/<type>_role/filter_plugins/ so they are discovered when the role is consumed via roles_path.
 - Run the generated playbook in check/diff mode to verify rendered configs without applying:
 	ansible-playbook -i "localhost," jtaf-playbook.yml --check --diff
 

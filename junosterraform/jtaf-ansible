@@ -82,8 +82,10 @@ def main() -> None:
     roles_path = os.path.join(new_dir, "roles", role_name)
     tasks_path = os.path.join(roles_path, "tasks")
     templates_path = os.path.join(roles_path, "templates")
+    role_filter_plugins_path = os.path.join(roles_path, "filter_plugins")
     os.makedirs(tasks_path, exist_ok=True)
     os.makedirs(templates_path, exist_ok=True)
+    os.makedirs(role_filter_plugins_path, exist_ok=True)
     os.makedirs(os.path.join(new_dir, "host_vars"), exist_ok=True)
     os.makedirs(os.path.join(new_dir, "group_vars"), exist_ok=True)
     os.makedirs(os.path.join(new_dir, "configs"), exist_ok=True)
@@ -131,13 +133,17 @@ def main() -> None:
     with open(os.path.join(new_dir, "group_vars", "all.yml"), "w") as f:
         f.write(group_vars_all)
 
-    # generate filter_plugins/jtaf_filters.py so the role's merge directives work
+    # generate filter_plugins/jtaf_filters.py so the role's merge directives work.
+    # Keep a provider-root copy for backwards compatibility and a role-local copy
+    # so Ansible discovers the filter when the role is loaded via roles_path.
     filter_plugins_path = os.path.join(new_dir, "filter_plugins")
     os.makedirs(filter_plugins_path, exist_ok=True)
     with as_file(files('junosterraform').joinpath('templates/jtaf_filters.py')) as filters_src:
         with open(filters_src) as f:
             filters_content = f.read()
     with open(os.path.join(filter_plugins_path, "jtaf_filters.py"), "w") as f:
+        f.write(filters_content)
+    with open(os.path.join(role_filter_plugins_path, "jtaf_filters.py"), "w") as f:
         f.write(filters_content)
 
     # copy rendered main.j2 into the role templates as an example

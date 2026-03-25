@@ -295,7 +295,7 @@ Access merged configuration in `roles/qfx_role/templates/template.j2`:
 
 ## Filter Plugins
 
-The `jtaf_apply_merge_directives` filter processes `_merge_directive` meta-instructions in the merged variables. It's automatically generated in `filter_plugins/jtaf_filters.py` when the Ansible role is created.
+The `jtaf_apply_merge_directives` filter processes `_merge_directive` meta-instructions in the merged variables. It's automatically generated in `filter_plugins/jtaf_filters.py` and in `roles/<type>_role/filter_plugins/jtaf_filters.py` when the Ansible role is created.
 
 **Supported directives:**
 - `replace` - Replace parent value (default)
@@ -406,7 +406,7 @@ ansible-playbook -i hosts jtaf-playbook.yml --check --diff
 
 ### Custom filter not found
 
-Ensure `filter_plugins/jtaf_filters.py` exists in the Ansible role directory. It's automatically created by `jtaf-ansible` generator.
+Ensure `filter_plugins/jtaf_filters.py` exists either at the generated provider root or under `roles/<type>_role/filter_plugins/jtaf_filters.py`. The role-local copy is what Ansible uses when the role is loaded via `roles_path`.
 
 ## See Also
 

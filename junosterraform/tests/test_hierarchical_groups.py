@@ -472,8 +472,10 @@ def test_jtaf_ansible_main_generates_role(ansible_mod, tmp_path, monkeypatch):
     out = tmp_path / "ansible-provider-junos-qfx"
     tasks = out / "roles" / "qfx_role" / "tasks" / "main.yml"
     filters_py = out / "filter_plugins" / "jtaf_filters.py"
+    role_filters_py = out / "roles" / "qfx_role" / "filter_plugins" / "jtaf_filters.py"
     assert tasks.exists()
     assert filters_py.exists()
+    assert role_filters_py.exists()
     task_text = tasks.read_text()
     assert "Merge variables from hierarchy" in task_text
     assert "jtaf_apply_merge_directives" in task_text
