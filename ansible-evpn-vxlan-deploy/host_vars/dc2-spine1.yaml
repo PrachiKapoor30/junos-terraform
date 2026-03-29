@@ -1,73 +1,5 @@
-version: 18.1R3-S5.3
 system:
   host_name: dc2-spine1
-  root_authentication:
-    encrypted_password: $1$DbZ1Q3pj$s48cZytjsmSJRUJAf4LdM.
-  login:
-    message: '***********************************************************************\nThis
-      system is restricted to __________, authorized users for legitimate\nbusiness
-      purposes only. All activity on the system will be logged and\nis subject to
-      monitoring. Unauthorized access, use or modification\nof computers, data therein
-      or data in transit to or from the computers\nis a violation of state and federal
-      laws. Unauthorized activity will\nbe reported to the law enforcement for investigation
-      and possible\nprosecution. __________ reserves the right to investigate, refer
-      for\nprosecution and pursue monetary damages in civil actions in the event\nof
-      unauthorized access.\n***********************************************************************\n'
-    user:
-    - name: jcluser
-      uid: '2000'
-      class: super-user
-      authentication:
-        encrypted_password: $1$a31gJmWG$h9ohikT1ajySf/tVH.gmv1
-  services:
-    ssh:
-      root_login: allow
-    extension_service:
-      request_response:
-        grpc:
-          undocumented:
-            skip_authentication: null
-          max_connections: '30'
-      notification:
-        allow_clients:
-          address: 0.0.0.0/0
-    netconf:
-      ssh: ''
-    rest:
-      http:
-        port: '3000'
-      enable_explorer: true
-  syslog:
-    user:
-    - name: '*'
-      contents:
-      - name: any
-        emergency: true
-    file:
-    - name: messages
-      contents:
-      - name: any
-        notice: true
-      - name: authorization
-        info: true
-    - name: interactive-commands
-      contents:
-      - name: interactive-commands
-        any: true
-  extensions:
-    providers:
-    - name: juniper
-      license_type:
-      - name: juniper
-        deployment_scope: commercial
-    - name: chef
-      license_type:
-      - name: juniper
-        deployment_scope: commercial
-chassis:
-  aggregated_devices:
-    ethernet:
-      device_count: '24'
 interfaces:
   interface:
   - name: xe-0/0/0
@@ -180,25 +112,9 @@ interfaces:
         inet:
           address:
           - name: 10.40.101.1/32
-snmp:
-  location: JCL Labs
-  contact: aburston@juniper.net
-  community:
-  - name: public
-    authorization: read-only
-forwarding_options:
-  storm_control_profiles:
-  - name: default
-    all: ''
 routing_options:
-  static:
-    route:
-    - name: 0.0.0.0/0
-      next_hop: 100.123.0.1
   router_id: 10.30.100.8
   forwarding_table:
-    export: PFE-LB
-    ecmp_fast_reroute: true
     chained_composite_next_hop:
       ingress:
         evpn: true
@@ -265,12 +181,6 @@ protocols:
     default_gateway: do-not-advertise
     extended_vni_list: all
     no_core_isolation: true
-  lldp:
-    interface:
-    - name: all
-  igmp_snooping:
-    vlan:
-    - name: default
 policy_options:
   policy_statement:
   - name: EVPN_T5_EXPORT
