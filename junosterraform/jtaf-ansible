@@ -131,13 +131,21 @@ def main() -> None:
     with open(os.path.join(new_dir, "group_vars", "all.yml"), "w") as f:
         f.write(group_vars_all)
 
-    # generate filter_plugins/jtaf_filters.py so the role's merge directives work
+    # Generate jtaf_filters.py in both common Ansible discovery locations:
+    # 1) playbook-level filter_plugins/
+    # 2) role-level roles/<role>/filter_plugins/
+    # This keeps custom filters available whether users run the generated playbook
+    # directly or consume the generated role from another project.
     filter_plugins_path = os.path.join(new_dir, "filter_plugins")
+    role_filter_plugins_path = os.path.join(roles_path, "filter_plugins")
     os.makedirs(filter_plugins_path, exist_ok=True)
+    os.makedirs(role_filter_plugins_path, exist_ok=True)
     with as_file(files('junosterraform').joinpath('templates/jtaf_filters.py')) as filters_src:
         with open(filters_src) as f:
             filters_content = f.read()
     with open(os.path.join(filter_plugins_path, "jtaf_filters.py"), "w") as f:
+        f.write(filters_content)
+    with open(os.path.join(role_filter_plugins_path, "jtaf_filters.py"), "w") as f:
         f.write(filters_content)
 
     # copy rendered main.j2 into the role templates as an example
