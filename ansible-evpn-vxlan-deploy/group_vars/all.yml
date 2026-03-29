@@ -1,4 +1,11 @@
+routing_options:
+  static:
+    route:
+    - name: 0.0.0.0/0
+      next_hop: 100.123.0.1
 system:
+  root_authentication:
+    encrypted_password: $1$DbZ1Q3pj$s48cZytjsmSJRUJAf4LdM.
   login:
     user:
     - name: jcluser
@@ -15,50 +22,43 @@ system:
       and possible\nprosecution. __________ reserves the right to investigate, refer
       for\nprosecution and pursue monetary damages in civil actions in the event\nof
       unauthorized access.\n***********************************************************************\n'
-  root_authentication:
-    encrypted_password: $1$DbZ1Q3pj$s48cZytjsmSJRUJAf4LdM.
+  services:
+    ssh:
+      root_login: allow
+    netconf:
+      ssh: ''
+    extension_service:
+      request_response:
+        grpc:
+          max_connections: '30'
+          undocumented:
+            skip_authentication: null
+      notification:
+        allow_clients:
+          address: 0.0.0.0/0
+    rest:
+      http:
+        port: '3000'
+      enable_explorer: true
   syslog:
     user:
     - name: '*'
       contents:
       - name: any
         emergency: true
-  services:
-    extension_service:
-      notification:
-        allow_clients:
-          address: 0.0.0.0/0
-      request_response:
-        grpc:
-          undocumented:
-            skip_authentication: null
-          max_connections: '30'
-    netconf:
-      ssh: ''
-    rest:
-      http:
-        port: '3000'
-      enable_explorer: true
-    ssh:
-      root_login: allow
-chassis:
-  aggregated_devices:
-    ethernet:
-      device_count: '24'
 interfaces: {}
-routing_options:
-  static:
-    route:
-    - name: 0.0.0.0/0
-      next_hop: 100.123.0.1
 protocols:
   lldp:
     interface:
     - name: all
+chassis:
+  aggregated_devices:
+    ethernet:
+      device_count: '24'
 policy_options: {}
 snmp:
-  location: JCL Labs
-  contact: aburston@juniper.net
   community:
   - name: public
     authorization: read-only
+  contact: aburston@juniper.net
+  location: JCL Labs

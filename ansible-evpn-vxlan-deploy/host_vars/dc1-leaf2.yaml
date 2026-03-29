@@ -1,5 +1,28 @@
+version: 18.1R3-S5.3
 system:
   host_name: dc1-leaf2
+  syslog:
+    file:
+    - name: messages
+      contents:
+      - name: any
+        notice: true
+      - name: authorization
+        info: true
+    - name: interactive-commands
+      contents:
+      - name: interactive-commands
+        any: true
+  extensions:
+    providers:
+    - name: juniper
+      license_type:
+      - name: juniper
+        deployment_scope: commercial
+    - name: chef
+      license_type:
+      - name: juniper
+        deployment_scope: commercial
 interfaces:
   interface:
   - name: xe-0/0/0
@@ -137,9 +160,15 @@ interfaces:
         inet:
           address:
           - name: 10.40.100.14/32
+forwarding_options:
+  storm_control_profiles:
+  - name: default
+    all: ''
 routing_options:
   router_id: 10.30.100.6
   forwarding_table:
+    export: PFE-LB
+    ecmp_fast_reroute: true
     chained_composite_next_hop:
       ingress:
         evpn: true
@@ -184,6 +213,9 @@ protocols:
     multicast_mode: ingress-replication
     default_gateway: do-not-advertise
     extended_vni_list: all
+  igmp_snooping:
+    vlan:
+    - name: default
 policy_options:
   policy_statement:
   - name: EVPN_T5_EXPORT

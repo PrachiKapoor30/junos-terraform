@@ -1,5 +1,28 @@
+version: 18.1R3-S5.3
 system:
   host_name: dc1-spine2
+  syslog:
+    file:
+    - name: messages
+      contents:
+      - name: any
+        notice: true
+      - name: authorization
+        info: true
+    - name: interactive-commands
+      contents:
+      - name: interactive-commands
+        any: true
+  extensions:
+    providers:
+    - name: juniper
+      license_type:
+      - name: juniper
+        deployment_scope: commercial
+    - name: chef
+      license_type:
+      - name: juniper
+        deployment_scope: commercial
 interfaces:
   interface:
   - name: xe-0/0/0
@@ -66,8 +89,15 @@ interfaces:
         inet:
           address:
           - name: 10.30.100.4/32
+forwarding_options:
+  storm_control_profiles:
+  - name: default
+    all: ''
 routing_options:
   router_id: 10.30.100.4
+  forwarding_table:
+    export: PFE-LB
+    ecmp_fast_reroute: true
 protocols:
   bgp:
     group:
@@ -113,6 +143,9 @@ protocols:
       - name: 10.30.142.2
         description: EBGP peering to 10.30.142.2
         peer_as: '65507'
+  igmp_snooping:
+    vlan:
+    - name: default
 policy_options:
   policy_statement:
   - name: IPCLOS_BGP_EXP
