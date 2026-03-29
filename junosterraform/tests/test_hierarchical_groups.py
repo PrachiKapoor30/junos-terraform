@@ -479,6 +479,7 @@ def test_jtaf_ansible_main_generates_role(ansible_mod, tmp_path, monkeypatch):
     task_text = tasks.read_text()
     assert "Merge variables from hierarchy" in task_text
     assert "jtaf_apply_merge_directives" in task_text
+    assert "Ensure render output directory exists" in task_text
     assert (out / "group_vars" / "all.yml").exists()
     assert (out / "trimmed_schema.json").exists()
 

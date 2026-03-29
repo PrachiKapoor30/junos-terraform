@@ -119,6 +119,14 @@ def main() -> None:
   when: jtaf_effective is defined
   tags: [merge_directives]
 
+- name: Ensure render output directory exists
+  file:
+    path: "{{{{ tmp_dir }}}}"
+    state: directory
+    mode: "0755"
+  delegate_to: localhost
+  tags: [render]
+
 - name: Applying template for {role_name}
   template: src=template.j2 dest={{{{ tmp_dir }}}}/{{{{ inventory_hostname }}}}.xml
 """.format(role_name=role_name)

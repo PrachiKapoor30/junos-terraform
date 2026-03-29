@@ -260,6 +260,7 @@ def test_yang2ansible():
             tasks_text = f.read()
         assert "Merge variables from hierarchy" in tasks_text
         assert "jtaf_apply_merge_directives" in tasks_text
+        assert "Ensure render output directory exists" in tasks_text
 
         host_var_files = glob(os.path.join(ansible_files_dir, "host_vars", "*.y*ml"))
         assert host_var_files, "Expected host_vars files to be generated"

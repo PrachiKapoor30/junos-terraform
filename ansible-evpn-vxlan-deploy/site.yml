@@ -5,6 +5,13 @@
   connection: local
   vars:
     tmp_dir: ../ansible-provider-junos-vqfx-evpn-vxlan/configs
+  pre_tasks:
+    - name: Ensure local render directory exists
+      ansible.builtin.file:
+        path: "{{ tmp_dir }}"
+        state: directory
+        mode: "0755"
+      delegate_to: localhost
   roles:
     - role: vqfx-evpn-vxlan_role
       delegate_to: localhost
@@ -17,6 +24,13 @@
     netconf_user: "{{ lookup('env', 'NETCONF_USERNAME') }}"
     netconf_pass: "{{ lookup('env', 'NETCONF_PASSWORD') }}"
     tmp_dir: ../ansible-provider-junos-vqfx-evpn-vxlan/configs
+  pre_tasks:
+    - name: Ensure local render directory exists
+      ansible.builtin.file:
+        path: "{{ tmp_dir }}"
+        state: directory
+        mode: "0755"
+      delegate_to: localhost
   tasks:
     - name: Preview candidate diff without committing
       juniper.device.config:
