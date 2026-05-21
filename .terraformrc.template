@@ -1,0 +1,6 @@
+provider_installation {
+  dev_overrides {
+    "registry.terraform.io/hashicorp/junos-vqfx" = "/home/jcluser/go/bin"
+  }
+  direct {}
+}

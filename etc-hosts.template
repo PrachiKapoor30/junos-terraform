@@ -1,0 +1,17 @@
+# JCL Sandbox Device Hosts Mapping
+# Add these entries to /etc/hosts or use them for device connectivity
+
+127.0.0.1       localhost
+<IP address>    dc1-leaf1
+<IP address> 	dc1-leaf2
+<IP address> 	dc1-leaf3
+<IP address> 	dc2-spine1
+<IP address> 	dc2-spine2
+<IP address> 	dc1-spine1
+<IP address> 	dc1-borderleaf2
+<IP address> 	dc1-borderleaf1
+<IP address> 	dc1-firewall1
+<IP address> 	dc1-firewall2
+<IP address> 	dc2-firewall1
+<IP address> 	dc1-spine2
+<IP address>	dc2-firewall2

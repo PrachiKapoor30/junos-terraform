@@ -1,0 +1,113 @@
+Alias,Name,Service,PrivAddr,PrivPort,PubAddr,PubPort,Url,Username,Password
+001 dc1-borderleaf1,vQFX_NV-01066,SSH,100.123.24.1,22,66.129.234.204,45003,sshclient jcluser@66.129.234.204 45003 Juniper!1 001 dc1-borderleaf1,jcluser,Juniper!1
+001 dc1-borderleaf1,vQFX_NV-01066,REST,100.123.24.1,3000,66.129.234.204,45002,http://66.129.234.204:45002/,jcluser,Juniper!1
+001 dc1-borderleaf1,vQFX_NV-01066,NETCONF,100.123.24.1,830,66.129.234.204,45001,netconfclient 66.129.234.204 45001 jcluser Juniper!1 001 dc1-borderleaf1,jcluser,Juniper!1
+001 dc1-borderleaf1,vQFX_NV-01066,HostVM-SSH,100.123.25.1,22,66.129.234.204,45000,sshclient root@66.129.234.204 45000 Juniper!1 001 dc1-borderleaf1,jcluser,Juniper!1
+001 dc1-firewall1,vSRX_NV-01079,SSH,100.123.26.1,22,66.129.234.204,45007,sshclient jcluser@66.129.234.204 45007 Juniper!1 001 dc1-firewall1,jcluser,Juniper!1
+001 dc1-firewall1,vSRX_NV-01079,REST,100.123.26.1,3000,66.129.234.204,45006,http://66.129.234.204:45006/,jcluser,Juniper!1
+001 dc1-firewall1,vSRX_NV-01079,NETCONF,100.123.26.1,830,66.129.234.204,45005,netconfclient 66.129.234.204 45005 jcluser Juniper!1 001 dc1-firewall1,jcluser,Juniper!1
+001 dc1-firewall1,vSRX_NV-01079,HostVM-SSH,100.123.27.1,22,66.129.234.204,45004,sshclient root@66.129.234.204 45004 Juniper!1 001 dc1-firewall1,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,SSH,100.123.20.1,22,66.129.234.204,45009,sshclient jcluser@66.129.234.204 45009 Juniper!1 001 dc1-webserver,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,VNC,100.123.20.1,5900,66.129.234.204,45014,vncclient 66.129.234.204 45014 jcluser Juniper!1 001 dc1-webserver,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,UserDef1,100.123.20.1,8080,66.129.234.204,45010,http://66.129.234.204:45010/,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,UserDef2,100.123.20.1,8081,66.129.234.204,45011,http://66.129.234.204:45011/,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,UserDef3,100.123.20.1,8443,66.129.234.204,45012,https://66.129.234.204:45012/,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,UserDef4,100.123.20.1,9443,66.129.234.204,45013,https://66.129.234.204:45013/,jcluser,Juniper!1
+001 dc1-webserver,Linux_NV-01188,HostVM-SSH,100.123.21.1,22,66.129.234.204,45008,sshclient root@66.129.234.204 45008 Juniper!1 001 dc1-webserver,jcluser,Juniper!1
+001 wan-pe1,vMX-01336,SSH,100.123.1.0,22,66.129.234.204,45017,sshclient jcluser@66.129.234.204 45017 Juniper!1 001 wan-pe1,jcluser,Juniper!1
+001 wan-pe1,vMX-01336,REST,100.123.1.0,3000,66.129.234.204,45016,http://66.129.234.204:45016/,jcluser,Juniper!1
+001 wan-pe1,vMX-01336,NETCONF,100.123.1.0,830,66.129.234.204,45015,netconfclient 66.129.234.204 45015 jcluser Juniper!1 001 wan-pe1,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,SSH,100.123.20.2,22,66.129.234.204,45019,sshclient jcluser@66.129.234.204 45019 Juniper!1 002 dc1-appserver,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,VNC,100.123.20.2,5900,66.129.234.204,45024,vncclient 66.129.234.204 45024 jcluser Juniper!1 002 dc1-appserver,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,UserDef1,100.123.20.2,8080,66.129.234.204,45020,http://66.129.234.204:45020/,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,UserDef2,100.123.20.2,8081,66.129.234.204,45021,http://66.129.234.204:45021/,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,UserDef3,100.123.20.2,8443,66.129.234.204,45022,https://66.129.234.204:45022/,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,UserDef4,100.123.20.2,9443,66.129.234.204,45023,https://66.129.234.204:45023/,jcluser,Juniper!1
+002 dc1-appserver,Linux_NV-01187,HostVM-SSH,100.123.21.2,22,66.129.234.204,45018,sshclient root@66.129.234.204 45018 Juniper!1 002 dc1-appserver,jcluser,Juniper!1
+002 dc1-borderleaf2,vQFX_NV-01162,SSH,100.123.24.2,22,66.129.234.204,45028,sshclient jcluser@66.129.234.204 45028 Juniper!1 002 dc1-borderleaf2,jcluser,Juniper!1
+002 dc1-borderleaf2,vQFX_NV-01162,REST,100.123.24.2,3000,66.129.234.204,45027,http://66.129.234.204:45027/,jcluser,Juniper!1
+002 dc1-borderleaf2,vQFX_NV-01162,NETCONF,100.123.24.2,830,66.129.234.204,45026,netconfclient 66.129.234.204 45026 jcluser Juniper!1 002 dc1-borderleaf2,jcluser,Juniper!1
+002 dc1-borderleaf2,vQFX_NV-01162,HostVM-SSH,100.123.25.2,22,66.129.234.204,45025,sshclient root@66.129.234.204 45025 Juniper!1 002 dc1-borderleaf2,jcluser,Juniper!1
+002 dc1-firewall2,vSRX_NV-01066,SSH,100.123.26.2,22,66.129.234.204,45032,sshclient jcluser@66.129.234.204 45032 Juniper!1 002 dc1-firewall2,jcluser,Juniper!1
+002 dc1-firewall2,vSRX_NV-01066,REST,100.123.26.2,3000,66.129.234.204,45031,http://66.129.234.204:45031/,jcluser,Juniper!1
+002 dc1-firewall2,vSRX_NV-01066,NETCONF,100.123.26.2,830,66.129.234.204,45030,netconfclient 66.129.234.204 45030 jcluser Juniper!1 002 dc1-firewall2,jcluser,Juniper!1
+002 dc1-firewall2,vSRX_NV-01066,HostVM-SSH,100.123.27.2,22,66.129.234.204,45029,sshclient root@66.129.234.204 45029 Juniper!1 002 dc1-firewall2,jcluser,Juniper!1
+002 wan-pe2,vMX-01226,SSH,100.123.1.1,22,66.129.234.204,45035,sshclient jcluser@66.129.234.204 45035 Juniper!1 002 wan-pe2,jcluser,Juniper!1
+002 wan-pe2,vMX-01226,REST,100.123.1.1,3000,66.129.234.204,45034,http://66.129.234.204:45034/,jcluser,Juniper!1
+002 wan-pe2,vMX-01226,NETCONF,100.123.1.1,830,66.129.234.204,45033,netconfclient 66.129.234.204 45033 jcluser Juniper!1 002 wan-pe2,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,SSH,100.123.20.3,22,66.129.234.204,45037,sshclient jcluser@66.129.234.204 45037 Juniper!1 003 dc1-dbserver,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,VNC,100.123.20.3,5900,66.129.234.204,45042,vncclient 66.129.234.204 45042 jcluser Juniper!1 003 dc1-dbserver,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,UserDef1,100.123.20.3,8080,66.129.234.204,45038,http://66.129.234.204:45038/,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,UserDef2,100.123.20.3,8081,66.129.234.204,45039,http://66.129.234.204:45039/,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,UserDef3,100.123.20.3,8443,66.129.234.204,45040,https://66.129.234.204:45040/,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,UserDef4,100.123.20.3,9443,66.129.234.204,45041,https://66.129.234.204:45041/,jcluser,Juniper!1
+003 dc1-dbserver,Linux_NV-01172,HostVM-SSH,100.123.21.3,22,66.129.234.204,45036,sshclient root@66.129.234.204 45036 Juniper!1 003 dc1-dbserver,jcluser,Juniper!1
+003 dc1-spine1,vQFX_NV-01239,SSH,100.123.24.3,22,66.129.234.204,45046,sshclient jcluser@66.129.234.204 45046 Juniper!1 003 dc1-spine1,jcluser,Juniper!1
+003 dc1-spine1,vQFX_NV-01239,REST,100.123.24.3,3000,66.129.234.204,45045,http://66.129.234.204:45045/,jcluser,Juniper!1
+003 dc1-spine1,vQFX_NV-01239,NETCONF,100.123.24.3,830,66.129.234.204,45044,netconfclient 66.129.234.204 45044 jcluser Juniper!1 003 dc1-spine1,jcluser,Juniper!1
+003 dc1-spine1,vQFX_NV-01239,HostVM-SSH,100.123.25.3,22,66.129.234.204,45043,sshclient root@66.129.234.204 45043 Juniper!1 003 dc1-spine1,jcluser,Juniper!1
+003 dc2-firewall1,vSRX_NV-01050,SSH,100.123.26.3,22,66.129.234.204,45050,sshclient jcluser@66.129.234.204 45050 Juniper!1 003 dc2-firewall1,jcluser,Juniper!1
+003 dc2-firewall1,vSRX_NV-01050,REST,100.123.26.3,3000,66.129.234.204,45049,http://66.129.234.204:45049/,jcluser,Juniper!1
+003 dc2-firewall1,vSRX_NV-01050,NETCONF,100.123.26.3,830,66.129.234.204,45048,netconfclient 66.129.234.204 45048 jcluser Juniper!1 003 dc2-firewall1,jcluser,Juniper!1
+003 dc2-firewall1,vSRX_NV-01050,HostVM-SSH,100.123.27.3,22,66.129.234.204,45047,sshclient root@66.129.234.204 45047 Juniper!1 003 dc2-firewall1,jcluser,Juniper!1
+004 dc1-spine2,vQFX_NV-01212,SSH,100.123.24.4,22,66.129.234.204,45054,sshclient jcluser@66.129.234.204 45054 Juniper!1 004 dc1-spine2,jcluser,Juniper!1
+004 dc1-spine2,vQFX_NV-01212,REST,100.123.24.4,3000,66.129.234.204,45053,http://66.129.234.204:45053/,jcluser,Juniper!1
+004 dc1-spine2,vQFX_NV-01212,NETCONF,100.123.24.4,830,66.129.234.204,45052,netconfclient 66.129.234.204 45052 jcluser Juniper!1 004 dc1-spine2,jcluser,Juniper!1
+004 dc1-spine2,vQFX_NV-01212,HostVM-SSH,100.123.25.4,22,66.129.234.204,45051,sshclient root@66.129.234.204 45051 Juniper!1 004 dc1-spine2,jcluser,Juniper!1
+004 dc2-firewall2,vSRX_NV-01027,SSH,100.123.26.4,22,66.129.234.204,45058,sshclient jcluser@66.129.234.204 45058 Juniper!1 004 dc2-firewall2,jcluser,Juniper!1
+004 dc2-firewall2,vSRX_NV-01027,REST,100.123.26.4,3000,66.129.234.204,45057,http://66.129.234.204:45057/,jcluser,Juniper!1
+004 dc2-firewall2,vSRX_NV-01027,NETCONF,100.123.26.4,830,66.129.234.204,45056,netconfclient 66.129.234.204 45056 jcluser Juniper!1 004 dc2-firewall2,jcluser,Juniper!1
+004 dc2-firewall2,vSRX_NV-01027,HostVM-SSH,100.123.27.4,22,66.129.234.204,45055,sshclient root@66.129.234.204 45055 Juniper!1 004 dc2-firewall2,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,SSH,100.123.20.4,22,66.129.234.204,45060,sshclient jcluser@66.129.234.204 45060 Juniper!1 004 dc2-webserver1,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,VNC,100.123.20.4,5900,66.129.234.204,45065,vncclient 66.129.234.204 45065 jcluser Juniper!1 004 dc2-webserver1,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,UserDef1,100.123.20.4,8080,66.129.234.204,45061,http://66.129.234.204:45061/,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,UserDef2,100.123.20.4,8081,66.129.234.204,45062,http://66.129.234.204:45062/,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,UserDef3,100.123.20.4,8443,66.129.234.204,45063,https://66.129.234.204:45063/,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,UserDef4,100.123.20.4,9443,66.129.234.204,45064,https://66.129.234.204:45064/,jcluser,Juniper!1
+004 dc2-webserver1,Linux_NV-01271,HostVM-SSH,100.123.21.4,22,66.129.234.204,45059,sshclient root@66.129.234.204 45059 Juniper!1 004 dc2-webserver1,jcluser,Juniper!1
+005 dc1-leaf1,vQFX_NV-01253,SSH,100.123.24.5,22,66.129.234.204,45069,sshclient jcluser@66.129.234.204 45069 Juniper!1 005 dc1-leaf1,jcluser,Juniper!1
+005 dc1-leaf1,vQFX_NV-01253,REST,100.123.24.5,3000,66.129.234.204,45068,http://66.129.234.204:45068/,jcluser,Juniper!1
+005 dc1-leaf1,vQFX_NV-01253,NETCONF,100.123.24.5,830,66.129.234.204,45067,netconfclient 66.129.234.204 45067 jcluser Juniper!1 005 dc1-leaf1,jcluser,Juniper!1
+005 dc1-leaf1,vQFX_NV-01253,HostVM-SSH,100.123.25.5,22,66.129.234.204,45066,sshclient root@66.129.234.204 45066 Juniper!1 005 dc1-leaf1,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,SSH,100.123.20.5,22,66.129.234.204,45071,sshclient jcluser@66.129.234.204 45071 Juniper!1 005 dc2-webserver2,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,VNC,100.123.20.5,5900,66.129.234.204,45076,vncclient 66.129.234.204 45076 jcluser Juniper!1 005 dc2-webserver2,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,UserDef1,100.123.20.5,8080,66.129.234.204,45072,http://66.129.234.204:45072/,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,UserDef2,100.123.20.5,8081,66.129.234.204,45073,http://66.129.234.204:45073/,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,UserDef3,100.123.20.5,8443,66.129.234.204,45074,https://66.129.234.204:45074/,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,UserDef4,100.123.20.5,9443,66.129.234.204,45075,https://66.129.234.204:45075/,jcluser,Juniper!1
+005 dc2-webserver2,Linux_NV-01062,HostVM-SSH,100.123.21.5,22,66.129.234.204,45070,sshclient root@66.129.234.204 45070 Juniper!1 005 dc2-webserver2,jcluser,Juniper!1
+006 dc1-leaf2,vQFX_NV-01201,SSH,100.123.24.6,22,66.129.234.204,45080,sshclient jcluser@66.129.234.204 45080 Juniper!1 006 dc1-leaf2,jcluser,Juniper!1
+006 dc1-leaf2,vQFX_NV-01201,REST,100.123.24.6,3000,66.129.234.204,45079,http://66.129.234.204:45079/,jcluser,Juniper!1
+006 dc1-leaf2,vQFX_NV-01201,NETCONF,100.123.24.6,830,66.129.234.204,45078,netconfclient 66.129.234.204 45078 jcluser Juniper!1 006 dc1-leaf2,jcluser,Juniper!1
+006 dc1-leaf2,vQFX_NV-01201,HostVM-SSH,100.123.25.6,22,66.129.234.204,45077,sshclient root@66.129.234.204 45077 Juniper!1 006 dc1-leaf2,jcluser,Juniper!1
+007 dc1-leaf3,vQFX_NV-01150,SSH,100.123.24.7,22,66.129.234.204,45084,sshclient jcluser@66.129.234.204 45084 Juniper!1 007 dc1-leaf3,jcluser,Juniper!1
+007 dc1-leaf3,vQFX_NV-01150,REST,100.123.24.7,3000,66.129.234.204,45083,http://66.129.234.204:45083/,jcluser,Juniper!1
+007 dc1-leaf3,vQFX_NV-01150,NETCONF,100.123.24.7,830,66.129.234.204,45082,netconfclient 66.129.234.204 45082 jcluser Juniper!1 007 dc1-leaf3,jcluser,Juniper!1
+007 dc1-leaf3,vQFX_NV-01150,HostVM-SSH,100.123.25.7,22,66.129.234.204,45081,sshclient root@66.129.234.204 45081 Juniper!1 007 dc1-leaf3,jcluser,Juniper!1
+008 dc2-spine1,vQFX_NV-01249,SSH,100.123.24.8,22,66.129.234.204,45088,sshclient jcluser@66.129.234.204 45088 Juniper!1 008 dc2-spine1,jcluser,Juniper!1
+008 dc2-spine1,vQFX_NV-01249,REST,100.123.24.8,3000,66.129.234.204,45087,http://66.129.234.204:45087/,jcluser,Juniper!1
+008 dc2-spine1,vQFX_NV-01249,NETCONF,100.123.24.8,830,66.129.234.204,45086,netconfclient 66.129.234.204 45086 jcluser Juniper!1 008 dc2-spine1,jcluser,Juniper!1
+008 dc2-spine1,vQFX_NV-01249,HostVM-SSH,100.123.25.8,22,66.129.234.204,45085,sshclient root@66.129.234.204 45085 Juniper!1 008 dc2-spine1,jcluser,Juniper!1
+009 dc2-spine2,vQFX_NV-01204,SSH,100.123.24.9,22,66.129.234.204,45092,sshclient jcluser@66.129.234.204 45092 Juniper!1 009 dc2-spine2,jcluser,Juniper!1
+009 dc2-spine2,vQFX_NV-01204,REST,100.123.24.9,3000,66.129.234.204,45091,http://66.129.234.204:45091/,jcluser,Juniper!1
+009 dc2-spine2,vQFX_NV-01204,NETCONF,100.123.24.9,830,66.129.234.204,45090,netconfclient 66.129.234.204 45090 jcluser Juniper!1 009 dc2-spine2,jcluser,Juniper!1
+009 dc2-spine2,vQFX_NV-01204,HostVM-SSH,100.123.25.9,22,66.129.234.204,45089,sshclient root@66.129.234.204 45089 Juniper!1 009 dc2-spine2,jcluser,Juniper!1
+HelperVM,HelperVM-01003,SSH,100.123.0.8,22,66.129.234.204,45095,sshclient root@66.129.234.204 45095 Juniper!1 HelperVM,root,Juniper!1
+HelperVM,HelperVM-01003,HTTPS,100.123.0.8,443,66.129.234.204,45093,https://66.129.234.204:45093/,root,Juniper!1
+HelperVM,HelperVM-01003,RDP,100.123.0.8,3389,66.129.234.204,45094,rdpclient 66.129.234.204 45094 root Juniper!1 HelperVM,root,Juniper!1
+HelperVM,HelperVM-01003,UserDef1,100.123.0.8,8080,66.129.234.204,45096,http://66.129.234.204:45096/,root,Juniper!1
+HelperVM,HelperVM-01003,UserDef2,100.123.0.8,8081,66.129.234.204,45097,http://66.129.234.204:45097/,root,Juniper!1
+HelperVM,HelperVM-01003,UserDef3,100.123.0.8,8443,66.129.234.204,45098,https://66.129.234.204:45098/,root,Juniper!1
+HelperVM,HelperVM-01003,UserDef4,100.123.0.8,9443,66.129.234.204,45099,https://66.129.234.204:45099/,root,Juniper!1
+IntGwy,IntGwy-01083,SSH,100.123.41.1,22,66.129.234.204,45103,sshclient jcluser@66.129.234.204 45103 Juniper!1 IntGwy,jcluser,Juniper!1
+IntGwy,IntGwy-01083,HTTPS,100.123.41.1,443,66.129.234.204,45100,https://66.129.234.204:45100/,jcluser,Juniper!1
+IntGwy,IntGwy-01083,REST,100.123.41.1,3000,66.129.234.204,45102,http://66.129.234.204:45102/,jcluser,Juniper!1
+IntGwy,IntGwy-01083,NETCONF,100.123.41.1,830,66.129.234.204,45101,netconfclient 66.129.234.204 45101 jcluser Juniper!1 IntGwy,jcluser,Juniper!1
+NITA,NITA-01049,SSH,100.123.0.16,22,66.129.234.204,45106,sshclient jcluser@66.129.234.204 45106 Juniper!1 NITA,jcluser,Juniper!1
+NITA,NITA-01049,HTTP,100.123.0.16,8090,66.129.234.204,45104,http://66.129.234.204:45104/,jcluser,Juniper!1
+NITA,NITA-01049,HTTPS,100.123.0.16,443,66.129.234.204,45105,https://66.129.234.204:45105/,jcluser,Juniper!1
+NITA,NITA-01049,UserDef1,100.123.0.16,8052,66.129.234.204,45107,http://66.129.234.204:45107/,jcluser,Juniper!1
+NITA,NITA-01049,UserDef2,100.123.0.16,8081,66.129.234.204,45108,http://66.129.234.204:45108/,jcluser,Juniper!1
+NITA,NITA-01049,UserDef3,100.123.0.16,8443,66.129.234.204,45109,https://66.129.234.204:45109/,jcluser,Juniper!1
+NITA,NITA-01049,UserDef4,100.123.0.16,9443,66.129.234.204,45110,https://66.129.234.204:45110/,jcluser,Juniper!1
+vWindowsPC-A1,vWindowsPC-01025,RDP,100.123.32.1,3389,66.129.234.204,45111,rdpclient 66.129.234.204 45111 labuser Juniper!1 vWindowsPC-A1,labuser,Juniper!1
