@@ -41,7 +41,7 @@ jobs:
         name: go-coverage-${{ matrix.go-version }}
         path: terraform_provider/coverage.out
 
-    - uses: golangci/golangci-lint-action@v7
+    - uses: golangci/golangci-lint-action@v9
       with:
         version: v2.10
         working-directory: terraform_provider
