@@ -44,7 +44,7 @@ jobs:
         coverage report -m
         coverage xml -i
     - name: Upload coverage report
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: python-coverage-${{ matrix.python-version }}
         path: coverage.xml
