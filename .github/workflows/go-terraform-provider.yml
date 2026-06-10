@@ -30,7 +30,7 @@ jobs:
         pytest -q netconf_mock/tests/test_netconf_mock_server.py
 
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v6
       with:
         go-version: 'stable'
 
