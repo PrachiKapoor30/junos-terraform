@@ -6,6 +6,9 @@ Deploy Terraform configuration by device scope.
 
 For plan-only previews, use `/preview-devices`.
 
+Mode keyword note:
+- `vqfx`, `qfx`, `srx`, and `vsrx` are command-mode keywords, not fixed inventory names.
+
 Accepted input forms (strict):
 - /deploy-devices push vqfx
 - /deploy-devices push qfx
@@ -29,9 +32,8 @@ Execution rules:
 - For `push vqfx`, `push srx`, and `push all`, use full `terraform plan` and `terraform apply` (no `-target`).
 - Use `-target` only for `push targets <resource...>` or explicit emergency recovery.
 
-Target set examples (only for `push targets` or emergency targeted mode):
-
-VQFX targets:
+Example target addresses (only for `push targets` or emergency targeted mode):
+- The values below are examples only. Replace them with resource addresses from your environment.
 - terraform-provider-junos-vqfx-evpn-vxlan.dc1-borderleaf1-base-config
 - terraform-provider-junos-vqfx-evpn-vxlan.dc1-borderleaf2-base-config
 - terraform-provider-junos-vqfx-evpn-vxlan.dc1-leaf1-base-config
@@ -41,8 +43,6 @@ VQFX targets:
 - terraform-provider-junos-vqfx-evpn-vxlan.dc1-spine2-base-config
 - terraform-provider-junos-vqfx-evpn-vxlan.dc2-spine1-base-config
 - terraform-provider-junos-vqfx-evpn-vxlan.dc2-spine2-base-config
-
-SRX targets:
 - terraform-provider-junos-vsrx-evpn-vxlan.dc1-firewall1-base-config
 - terraform-provider-junos-vsrx-evpn-vxlan.dc1-firewall2-base-config
 - terraform-provider-junos-vsrx-evpn-vxlan.dc2-firewall1-base-config
